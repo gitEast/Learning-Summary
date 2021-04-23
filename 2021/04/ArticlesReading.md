@@ -203,4 +203,4 @@ We are selectiong the calculation we want to do and executing the response, pass
 #### Conclusion
 Writing conditionals will always be a matter of taste, and certain situations will require a different approach. However, I find that when I have several conditions to check against, object literals are the most readable and maintainable way.
 
-感想：呜呜呜太绝了，我只是看一篇文章而已，学到了三个知识点，`??`、`.?`和object literals的用法。明朝老师快来学前端叭！我都无处抒发我的感慨呜呜呜
+感想：呜呜呜太绝了，我只是看一篇文章而已，学到了三个知识点，`??`、`.?`和object literals的用法。某位人士快来学前端叭！急于抒发我的感慨呜呜呜
