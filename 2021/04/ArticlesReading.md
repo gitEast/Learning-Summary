@@ -204,3 +204,61 @@ We are selectiong the calculation we want to do and executing the response, pass
 Writing conditionals will always be a matter of taste, and certain situations will require a different approach. However, I find that when I have several conditions to check against, object literals are the most readable and maintainable way.
 
 感想：呜呜呜太绝了，我只是看一篇文章而已，学到了三个知识点，`??`、`.?`和object literals的用法。某位人士快来学前端叭！急于抒发我的感慨呜呜呜
+
+
+
+## 6 Inspiring Frontend Challenges
+### by Trevor Lasn
+One of the moset efficient ways of getting better at coding is to simply build as many things as possible.
+
+Coding challenges are a fun way to level up your skills by building things.Use this article as a source of inspiration, grab something from the list, and let's start building!
+
+If you're in a hurry and never want to run out of coding ideas--I've compiled a list of over 100 challenges here.
+
+You can use any tools you like for the challenges, so if you've got something you'd like to practice, feel free to give it a go.
+
+#### 1. Task Manager UI
+What a beautiful-looking application! A clean, modern, and intelligent UI.
+
+What you will learn by building the Task Manager UI:
++ How to use CSS with HTML. Bonus point if you give the new CSS grid a try.
++ How to create great-looking web apps.
+
+#### 2. Random Password Generator
+Select the length of your new password, apply filters, number, symbols, etc., and generate a new password!
+
+What you will learn by building the Random Password Generator:
++ How to use JavaScript to generate secure passwords. Feel free to use any open source NPM library as you see fit!
++ How to create custom-themed input form elements. Notice the toggle buttons--these are `input` **HTML5** elements.
+
+#### 3. Animated Button
+Here's a slick-looking button that animates when you toggle the different modes. Feel free to experiment with different styles and animations.
+
+What you will learn by building the Animated Button:
++ How CSS animations, transforms, and transitions work. You'll need to make the text transition in and out.
+
+#### 4. VU Meter(CSS Only)
+"A volume unit(VU) meter or standard volume indicator(SVI) is a device displaying a representation of the signal level in audio equipment." -- Wikipedia
+
+What you will learn by building the CSS-Only VU Meter:
++ How to use only CSS to create objects on a webpage.
++ Applying CSS animations, transforms, transitions, etc.
+
+#### 5. Clubhouse Clone
+With Clubhouse's rampant success, who hasn't built a Clubhouse clone yet? Why not learn how it workds by building a clone? Let's do it!
+
+What you will learn by building the Clubhouse clone:
++ How to create native mobile apps that look like Clubhouse. Feel free to add as much functionlity as you like.
+
+#### 6. Job Recruiter Dashborad
+Charts, dark theme, chat--everything you see in a modern web app. Every employer expects you to know how to code those. Try to see if you can replicate the dashbord!
+
+What you will learn by building the Job Recruiter Dashboard:
++ How to create beautiful data charts with JavaScript and CSS.
++ How to create a fast and real-time chat in WebSockets.
++ How to create a responsive layout.
+
+#### Conclusion
+Thanks for reading. Happy coding!
+
+感想：[flexboxfroggy](http://flexboxfroggy.com/)这个有点好玩
