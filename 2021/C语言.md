@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-04-23 20:10:07
- * @LastEditTime: 2021-04-29 22:17:19
+ * @LastEditTime: 2021-05-01 22:51:05
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Learning-Summary\2021\04\C语言.md
@@ -141,9 +141,15 @@
 2. 流程控制的分类
    1. 顺序执行
    2. 选择执行
-      1. if：成绩等级，求最大值，素数判断、回文数判断、十进制数字的二进制形式、奇位数组成的新数字、数字倒过来
+      1. if：[成绩等级](./04/C-programs/29-1.c)，[求最大值](./04/C-programs/29-2.c)，[素数判断](./05/C-programs/01-1.c)、[回文数判断](./05/C-programs/01-2.c)、[十进制数字的二进制形式](./05/C-programs/01-3.c)、[奇位数组成的新数字](./05/C-programs/01-4.c)、[数字倒过来](./05/C-programs/01-5.c)
       2. switch
    3. 循环执行
+      1. 定义：某些代码会被重复执行
+      2. 分类：
+         1. for：求1到100之间的奇数之和，1到100之间的奇数个数，1到100之间的奇数的平均数
+         2. while
+         3. do...while
+      3. break和continue
 3. 流程控制为什么重要？
    1. 软件思想：这三者，走遍天下
    2. 看懂程序
