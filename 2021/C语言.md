@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-04-23 20:10:07
- * @LastEditTime: 2021-05-05 22:32:40
+ * @LastEditTime: 2021-05-06 22:03:19
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Learning-Summary\2021\04\C语言.md
@@ -156,6 +156,7 @@
          4. 什么时候使用while，什么时候使用for
             1. 没法说...
       3. do...while
+      
          1. 主要用于人机交互
          2. 语法
             ```c
@@ -167,8 +168,14 @@
          3. 不同：先执行一次，再进入循环
          4. 示例：一元二次方程
    3. break和continue
-      1. break用于终止循环 or switch
-      2. continue用于终止本次循环，不允许出现在switch中
+      1. break用于终止循环 or switch；在多层循环 or switch中，只能终止最近的
+      2. continue用于跳过本次循环，不允许出现在switch中
+         1. 可解决用户不规范输入
+
+            ```c
+            while((ch = getchar()) != '\n')
+              continue;
+            ```
 
 ### 流程控制为什么重要？
    1. 软件思想：这三者，走遍天下
@@ -178,6 +185,16 @@
 1. 自增 or 自减
 2. 三目运算符： `A? B: c;`
 3. 逗号表达式：a = (A, B, C, D) 等价于 a = D
+
+## 数组
+### 为什么需要数组
+1. 为了解决大量同类型数据的存储与使用问题
+2. 为了模拟现实世界
+
+### 数组的分类
+1. 一维数组：`int a[5] = {1, 2, 3, 4, 5};`
+2. 二维数组
+3. 多维数组
 
 
 
