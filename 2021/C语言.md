@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-04-23 20:10:07
- * @LastEditTime: 2021-05-08 23:46:06
+ * @LastEditTime: 2021-05-09 16:40:31
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Learning-Summary\2021\04\C语言.md
@@ -359,6 +359,8 @@ int main(void)
 
 ### 指针的分类
 1. 基本类型指针
+   1. 经典程序：互换两个数字
+   2. 写法：`int * p` === `int *p` === `int* p`
 2. 指针和数组
 3. 指针和函数
 4. 指针和结构体
@@ -416,4 +418,8 @@ int main(void)
 6. 强制类型转换
    1. 格式：(数据类型)(表达式)
    2. 功能：把表达式的值强制转换为前面所执行的数据类型
-7. 浮点数的存储所带来的问题——float和double都不能保证可以精确地存储一个小鼠
+7. 浮点数的存储所带来的问题——float和double都不能保证可以精确地存储一个小数
+8. *的含义
+   1. 乘法
+   2. 定义指针变量
+   3. 指针运算符：该运算符放在已定义好的指针变量前，表示以该指针变量内容为地址的变量
