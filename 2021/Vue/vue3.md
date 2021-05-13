@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-05-10 20:09:09
- * @LastEditTime: 2021-05-13 22:05:26
+ * @LastEditTime: 2021-05-13 23:01:19
  * @LastEditors: Please set LastEditors
  * @Description: coderwhy的Vue+TypeScript
  * @FilePath: \Learning-Summary\2021\Vue\vue3.md
@@ -271,6 +271,12 @@
 
 ### 其他属性
 再说。
+
+### Vue3源码调试
+1. `npm install yarn -g`：vue3源码使用yarn管理
+2. `yarn install`：安装依赖
+3. `yarn dev`：打包代码至packages\vue\dist中
+4. `"dev": "node scripts/dev.js --sourcemap"`：查看源码
    
 ### 题外话
 1. vscode插件
