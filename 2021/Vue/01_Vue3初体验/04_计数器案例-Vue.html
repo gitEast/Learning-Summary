@@ -1,0 +1,43 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-05-12 21:24:06
+ * @LastEditTime: 2021-05-12 21:32:26
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \Learning-Summary\2021\Vue\01_Vue3初体验\04_计数器案例-Vue.html
+-->
+<div id="app"></div>
+
+  <script src="https://unpkg.com/vue@next"></script>
+  <script>
+    /** 
+     * data内的数据会被加入到响应式系统，模板中也能使用
+     */
+    const why = {
+      template: `
+        <div>
+          <h2>{{message}}</h2>
+          <h2>{{counter}}</h2>
+          <button @click="increment">+1</button>
+          <button>-1</button>
+        </div>
+      `,
+      data: function() {
+        return {
+          message: 'Hello World',
+          counter: 100
+        }
+      },
+      // 方法，定义各种各样的方法
+      methods: {
+        increment() {
+          
+        },
+        decrement() {
+          
+        }
+      },
+    }
+
+    const app = Vue.createApp(why)
+    app.mount('#app') //挂载，内部自行document.selector
