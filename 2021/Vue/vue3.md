@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-05-10 20:09:09
- * @LastEditTime: 2021-05-13 23:01:19
+ * @LastEditTime: 2021-05-17 21:55:55
  * @LastEditors: Please set LastEditors
  * @Description: coderwhy的Vue+TypeScript
  * @FilePath: \Learning-Summary\2021\Vue\vue3.md
@@ -301,4 +301,20 @@
    19. EJS language support
    20. ES7 React/Redux/GraphQL
    21. ESLint
+
+## 2021-05-17 Vue3基础语法一：模板语法
+### methods方法绑定this
+[详情](https://mp.weixin.qq.com/s/hYm0JgBI25grNG_2sCRlTA)
+
+### 模板语法
+1. vue也支持jsx的开发模式
+2. 但大多数情况下，使用基于HTML的模板语法
+3. 在模板中，允许开发者以声明式的方式将DOM和底层组件实例的数据绑定在一起
+4. 在底层的实现中，Vue将模板编译成虚拟DOM渲染函数
+
+具体语法
++ Mustache语法：双大括号方式，表达式，调用函数，计算属性
++ 指令
+  - v-once：数据自增区别
+  - 
       
