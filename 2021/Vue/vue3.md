@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-05-10 20:09:09
- * @LastEditTime: 2021-05-17 21:55:55
+ * @LastEditTime: 2021-05-18 23:22:20
  * @LastEditors: Please set LastEditors
  * @Description: coderwhy的Vue+TypeScript
  * @FilePath: \Learning-Summary\2021\Vue\vue3.md
@@ -316,5 +316,20 @@
 + Mustache语法：双大括号方式，表达式，调用函数，计算属性
 + 指令
   - v-once：数据自增区别
-  - 
-      
+  - v-text：要展示的内容`<h2 v-text="message"></h2>`
+  - v-html：将普通文本转化为html语言
+  - v-pre：
+  - v-cloak：
+  - v-bind
+    * 绑定对象语法：`<div :class="{className: boolean
+    }">哈哈哈哈</div>
+    * 绑定数组语法：`<div :class="[className]"></div>`
+    * 绑定三元运算符：建议不用
+    * 绑定数组内可以使用对象
+    * style绑定：`<div :style="{color: 'red'}"></div>
+    * 绑定属性名称：`<div :[attr]="value"></div>`
+    * 绑定对象：`<div v-bind="object"></div>`
+  - v-on：交互
+    * 绑定对象：多个事件`<div v-on="{click: btnClick, mousemove: move}">
+    * 带参数：`<div @click="handleClick($event, value)"></div>`
+    * .stop：阻止冒泡
