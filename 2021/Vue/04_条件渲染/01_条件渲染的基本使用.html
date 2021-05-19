@@ -1,0 +1,42 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-05-19 20:35:52
+ * @LastEditTime: 2021-05-19 20:37:57
+ * @LastEditors: Please set LastEditors
+ * @Description: v-if的使用
+ * @FilePath: \Learning-Summary\2021\Vue\04_条件渲染\01_条件渲染的基本使用.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+  
+  <template id="my-app">
+    <div>
+      <h2>{{message}}</h2>
+    </div>
+  </template>
+
+  <script src="https://unpkg.com/vue@next"></script>
+  <script>
+    const why = {
+      template: '#my-app',
+      data() {
+        return {
+          message: 'Hello World!'
+        }
+      }
+    }
+
+    const app = Vue.createApp(why)
+    app.mount('#app')
+    
+  </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-05-19 20:49:11
+ * @LastEditTime: 2021-05-19 20:55:09
+ * @LastEditors: Please set LastEditors
+ * @Description: 渲染列表，+索引值，对象列表渲染，对象+索引值，数字列表
+ * @FilePath: \Learning-Summary\2021\Vue\05_列表渲染\01_v-for的基本使用.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+  
+  <template id="my-app">
+    <div>
+      <h2>{{message}}</h2>
+      <!-- 遍历数组 -->
+      <h2>书籍列表</h2>
+      <ul>
+        <li v-for="book in books">{{book}}</li>
+      </ul>
+      <!-- 遍历对象 -->
+      <!-- 遍历数字 -->
+      <ul>
+        <li for="num in 10"></li>
+      </ul>
+    </div>
+  </template>
+
+  <script src="https://unpkg.com/vue@next"></script>
+  <script>
+    const why = {
+      template: '#my-app',
+      data() {
+        return {
+          message: 'Hello World!',
+          books: ['房思琪的初恋乐园', '东方学', '知识分子', '刀锋']
+        }
+      }
+    }
+
+    const app = Vue.createApp(why)
+    app.mount('#app')
+    
+  </script>
+</body>
+</html>

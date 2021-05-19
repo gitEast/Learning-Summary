@@ -1,0 +1,52 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-05-19 20:41:21
+ * @LastEditTime: 2021-05-19 20:43:08
+ * @LastEditors: Please set LastEditors
+ * @Description: v-if + template结合使用
+ * @FilePath: \Learning-Summary\2021\Vue\04_条件渲染\03_v-if与template结合使用.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+  
+  <template id="my-app">
+    <div>
+      <h2>{{message}}</h2>
+      <template v-if="show">
+        <h2>哈哈哈哈哈</h2>
+        <h2>哈哈哈哈哈</h2>
+        <h2>哈哈哈哈哈</h2>
+      </template>
+      <template v-else>
+        <h2>呵呵呵呵呵</h2>
+        <h2>呵呵呵呵呵</h2>
+        <h2>呵呵呵呵呵</h2>
+      </template>
+    </div>
+  </template>
+
+  <script src="https://unpkg.com/vue@next"></script>
+  <script>
+    const why = {
+      template: '#my-app',
+      data() {
+        return {
+          message: 'Hello World!'
+        }
+      }
+    }
+
+    const app = Vue.createApp(why)
+    app.mount('#app')
+    
+  </script>
+</body>
+</html>

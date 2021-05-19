@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-05-10 20:09:09
- * @LastEditTime: 2021-05-18 23:22:20
+ * @LastEditTime: 2021-05-19 21:29:52
  * @LastEditors: Please set LastEditors
  * @Description: coderwhy的Vue+TypeScript
  * @FilePath: \Learning-Summary\2021\Vue\vue3.md
@@ -333,3 +333,50 @@
     * 绑定对象：多个事件`<div v-on="{click: btnClick, mousemove: move}">
     * 带参数：`<div @click="handleClick($event, value)"></div>`
     * .stop：阻止冒泡
+
+
+## 2021-05-19 Vue基础-模板语法(二)
+### 条件渲染
++ v-if
+  - v-if是惰性的，不会被渲染，或者会被销毁
+  - v-if常与template结合使用，减少不必要的div元素
++ v-else
++ v-else-if
++ v-show
+  - v-show不支持template一起使用
+  - v-show不可以和v-else一起使用
+  - `v-show="false"` === `display: none`
+
+### 列表渲染 v-for
++ 基本格式：`item in 数组`
++ 支持的类型
+  - 数组
+  - 对象
+  - 数字
+
+### 数组更新检测
++ Vue将被侦听的数组更新方法进行了包裹，所以它们也会触发视图更新(修改原数组)
+  - push()
+  - pop()
+  - shift()
+  - unshift()
+  - splice()
+  - sort()
+  - reverse()
++ 另外的修改数组方法(生成新的数组)
+  - filter()
+  - contact()
+  - slice()
+
+### **key的作用**
++ 在使用v-for进行列表渲染时，推荐绑定key属性
++ 官方解释
+  - 主要用在Vue的虚拟DOM算法，在新旧nodes对比辨识VNodes
+  - 如不使用key，Vue会使用一种最大限度减少动态元素并且尽可能地尝试就地<u>修改/复用相同类型</u>的算法
+  - 如使用key，Vue会基于key的变化重新排列元素顺序，并且会<u>移除/销毁key</u>不存在的元素
++ 认识VNode
+  - 全称：Virtual Node，即虚拟节点
+  - 无论是组件还是元素，在Vue中表示出来都是一个个VNode：template → VNode → 真实DOM
+  - VNode实际上是一个JavaScript对象
++ 虚拟DOM(Virtual DOM)
+  - 如果不只是一个简单的div，而是有一大堆的元素，那么它应该会形成一个VNode Tree
