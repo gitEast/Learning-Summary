@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-05-10 20:09:09
- * @LastEditTime: 2021-05-19 21:29:52
+ * @LastEditTime: 2021-05-20 21:10:59
  * @LastEditors: Please set LastEditors
  * @Description: coderwhy的Vue+TypeScript
  * @FilePath: \Learning-Summary\2021\Vue\vue3.md
@@ -380,3 +380,33 @@
   - VNode实际上是一个JavaScript对象
 + 虚拟DOM(Virtual DOM)
   - 如果不只是一个简单的div，而是有一大堆的元素，那么它应该会形成一个VNode Tree
+
+
+## 2021-05-20 基础语法(三)
+### 复杂data的处理方式
++ 在模板中，可以直接通过插值语法显示data中的数据
++ 对数据进行处理后再显示
+  - 插值表达式
+    * 复杂逻辑
+    * 重复代码
+  - methods的options中
+    * 重复调用
+  - 计算属性computed
+    * 对于任何包含响应式数据的复杂逻辑，都应该使用计算属性
+    * 具有缓存
+
+### 计算属性的setter和getter
+
+### 认识侦听器watch
++ 作用：在代码逻辑中监听某个数据的变化
++ 侦听情况
+  - 默认情况下，只能侦听到数据本身的变化(内部变化无法侦听到)
+  - 深度侦听 `deep: true`
+  - 第一次渲染时也侦听 `immediate: true`
+
+### 侦听器watch的其他方式(一)
++ 字符串
++ 数组
+
+### 侦听器watch的其他方式(二)
++ 侦听对象的属性`info.name(newName, oldName) {}`
