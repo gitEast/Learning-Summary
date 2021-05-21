@@ -1,0 +1,47 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-05-21 21:53:18
+ * @LastEditTime: 2021-05-21 21:56:26
+ * @LastEditors: Please set LastEditors
+ * @Description: 好多东西在同一个地方
+ * @FilePath: \Learning-Summary\2021\Vue\10_组件化开发\01_注册一个全局组件.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+  
+  <template id="my-app">
+    <div>
+      <h2>{{message}}</h2>
+      
+      <h2>{{title}}</h2>
+      <p>{{desc}}</p>
+    </div>
+  </template>
+
+  <script src="https://unpkg.com/vue@next"></script>
+  <script>
+    const why = {
+      template: '#my-app',
+      data() {
+        return {
+          message: 'Hello World!',
+          title: '哈哈哈哈哈哈',
+          desc: '内容哈哈哈哈哈哈哈'
+        }
+      }
+    }
+
+    const app = Vue.createApp(why)
+    app.mount('#app')
+    
+  </script>
+</body>
+</html>

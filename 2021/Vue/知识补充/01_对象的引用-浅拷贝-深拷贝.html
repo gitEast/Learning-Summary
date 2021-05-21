@@ -1,0 +1,39 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-05-21 20:29:13
+ * @LastEditTime: 2021-05-21 20:35:28
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \Learning-Summary\2021\Vue\知识补充\01_对象的引用-浅拷贝-深拷贝.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 对象的浅拷贝
+    const info = {
+      name: 'East',
+      age: 18,
+      friend: {
+        name: 'Wind'
+      }
+    }
+    const obj01 = Object.assign({}, info)
+
+    // 对象的深拷贝
+    const obj02 = JSON.parse(JSON.stringify(info))
+
+    // 使用工具库——loadsh
+    // 浅拷贝
+    const obj03 = _.clone(info)
+    // 深拷贝
+    const obj04 = _.cloneDeep(info)
+  </script>
+</body>
+</html>

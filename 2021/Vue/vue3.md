@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-05-10 20:09:09
- * @LastEditTime: 2021-05-20 21:10:59
+ * @LastEditTime: 2021-05-21 21:50:52
  * @LastEditors: Please set LastEditors
  * @Description: coderwhy的Vue+TypeScript
  * @FilePath: \Learning-Summary\2021\Vue\vue3.md
@@ -410,3 +410,23 @@
 
 ### 侦听器watch的其他方式(二)
 + 侦听对象的属性`info.name(newName, oldName) {}`
+
+
+## 2021-05-21 表单提交和开发模式
+### v-model的基本功能
++ form提交
+  - v-model在input、textarea和select元素上创建双向数据绑定
++ 双向绑定
+  - 1.v-bind value的绑定；2.监听input事件，更新message的值：`<input type="text" :value="message" @input="inputChange">`
+  - 本质是上面一行代码的语法糖：`<input type="text" v-model:value="message">`
+
+### v-model的修饰符
++ lazy：将input事件绑定改为绑定change事件，按下enter键才改变
++ number
++ trim
+
+### Vue的组件化
++ 组件化是Vue的核心思想
+  - createApp函数传入了一个对象app，这个对象本质上就是一个组件，也是我们应用程序的根组件
+  - 组件化提供了一种抽象，让我们可以开发出一个个独立可复用的小组件来构造我们的应用
+  - 任何应用都会被抽象成一棵组件树
