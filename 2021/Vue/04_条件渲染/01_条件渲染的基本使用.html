@@ -19,7 +19,8 @@
   
   <template id="my-app">
     <div>
-      <h2>{{message}}</h2>
+      <h2 v-if="ifShow">{{message}}</h2>
+      <button @click="ifShow = !ifShow">切换</button>
     </div>
   </template>
 
@@ -29,7 +30,8 @@
       template: '#my-app',
       data() {
         return {
-          message: 'Hello World!'
+          message: 'Hello World!',
+          ifShow: true
         }
       }
     }

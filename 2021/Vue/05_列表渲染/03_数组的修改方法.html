@@ -6,3 +6,65 @@
  * @Description: 添加数组元素
  * @FilePath: \Learning-Summary\2021\Vue\05_列表渲染\03_数组的修改方法.html
 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+  
+  <template id="my-app">
+    <div>
+      <h2>{{message}}</h2>
+      <!-- 遍历数组 -->
+      <h2>书籍列表</h2>
+      <ul>
+        <li v-for="(book, index) in books">{{index + 1}}.{{book}}</li>
+      </ul>
+    </div>
+    <div>
+      <label for="book">添加一本书：</label>
+      <input type="text" name="book" id="" v-model="name" placeholder="请输入书名">
+      <button @click="add">确认</button>
+    </div>
+    <div>
+      <label for="delBook">删除一本书：</label>
+      <input type="number" name="delBook" id="" v-model="index" placeholder="请输入书籍序号">
+      <button @click="del">确认</button>
+    </div>
+  </template>
+
+  <script src="https://unpkg.com/vue@next"></script>
+  <script>
+    const why = {
+      template: '#my-app',
+      data() {
+        return {
+          message: 'Hello World!',
+          books: ['房思琪的初恋乐园', '东方学', '知识分子', '刀锋'],
+          name: '',
+          index: ''
+        }
+      },
+      methods: {
+        add() {
+          this.books.push(this.name)
+          this.name = ''
+        },
+        del() {
+          this.books.splice(this.index-1, 1)
+          this.index = ''
+        }
+      },
+    }
+
+    const app = Vue.createApp(why)
+    app.mount('#app')
+    
+  </script>
+</body>
+</html>

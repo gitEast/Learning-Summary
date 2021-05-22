@@ -20,7 +20,7 @@
   <template id="my-app">
     <div>
       <h2>{{message}}</h2>
-      <template v-if="show">
+      <template v-if="ifShow">
         <h2>哈哈哈哈哈</h2>
         <h2>哈哈哈哈哈</h2>
         <h2>哈哈哈哈哈</h2>
@@ -31,6 +31,7 @@
         <h2>呵呵呵呵呵</h2>
       </template>
     </div>
+    <button @click="ifShow = !ifShow">切换</button>
   </template>
 
   <script src="https://unpkg.com/vue@next"></script>
@@ -39,7 +40,8 @@
       template: '#my-app',
       data() {
         return {
-          message: 'Hello World!'
+          message: 'Hello World!',
+          ifShow: true
         }
       }
     }

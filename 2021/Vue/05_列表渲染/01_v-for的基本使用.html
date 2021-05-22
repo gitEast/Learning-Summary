@@ -26,9 +26,12 @@
         <li v-for="book in books">{{book}}</li>
       </ul>
       <!-- 遍历对象 -->
+      <ul>
+        <li v-for="(info, key, index) of bookInfo">{{index}}--{{key}}: {{info}}</li>
+      </ul>
       <!-- 遍历数字 -->
       <ul>
-        <li for="num in 10"></li>
+        <li v-for="num in 10">{{num}}</li>
       </ul>
     </div>
   </template>
@@ -40,7 +43,12 @@
       data() {
         return {
           message: 'Hello World!',
-          books: ['房思琪的初恋乐园', '东方学', '知识分子', '刀锋']
+          books: ['房思琪的初恋乐园', '东方学', '知识分子', '刀锋'],
+          bookInfo: {
+            name: '第二性',
+            author: '波伏娃',
+            price: 1949
+          }
         }
       }
     }
