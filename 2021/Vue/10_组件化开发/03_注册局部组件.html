@@ -1,10 +1,10 @@
 <!--
  * @Author: your name
- * @Date: 2021-05-21 21:53:18
- * @LastEditTime: 2021-05-23 13:01:02
+ * @Date: 2021-05-23 13:34:59
+ * @LastEditTime: 2021-05-23 13:37:51
  * @LastEditors: Please set LastEditors
- * @Description: 好多东西在同一个地方
- * @FilePath: \Learning-Summary\2021\Vue\10_组件化开发\01_注册一个全局组件.html
+ * @Description: In User Settings Edit
+ * @FilePath: \Learning-Summary\2021\Vue\10_组件化开发\03_注册局部组件.html
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -19,23 +19,30 @@
   
   <template id="my-app">
     <div>
-      <input type="text" v-model="message">
       <h2>{{message}}</h2>
-      
-      <h2>{{title}}</h2>
-      <p>{{desc}}</p>
     </div>
+    <cpn-a></cpn-a>
+  </template>
+
+  <template id="cpn-a">
+    <h2>我是组件A</h2>
+    <p>我是内容，哈哈哈哈</p>
   </template>
 
   <script src="https://unpkg.com/vue@next"></script>
   <script>
+    const cpnA = {
+      template: '#cpn-a'
+    }
+
     const why = {
       template: '#my-app',
+      components: {
+        cpnA: cpnA
+      },
       data() {
         return {
-          message: 'Hello World!',
-          title: '哈哈哈哈哈哈',
-          desc: '内容哈哈哈哈哈哈哈'
+          message: 'Hello World!'
         }
       }
     }

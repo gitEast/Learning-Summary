@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-05-21 21:33:35
- * @LastEditTime: 2021-05-21 21:34:26
+ * @LastEditTime: 2021-05-23 10:58:33
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Learning-Summary\2021\Vue\知识补充\02_逻辑判断中的隐式转换.html
@@ -17,6 +17,7 @@
 <body>
   <script>
     const score = '100'
+    // 逻辑判断时，会隐式地自动将一个string类型(能够转换的值)转化为一个number类型再来进行判断(隐式转换)
     if (score > 90) {
       console.log('优秀');
     } else {

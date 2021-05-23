@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-05-21 21:56:46
- * @LastEditTime: 2021-05-21 21:56:46
+ * @LastEditTime: 2021-05-23 13:28:17
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Learning-Summary\2021\Vue\10_组件化开发\02_注册全局组件.html
@@ -21,6 +21,15 @@
     <div>
       <h2>{{message}}</h2>
     </div>
+    
+    <cpn-a></cpn-a>
+    <cpn-b></cpn-b>
+  </template>
+
+  <template id="cpn-b">
+    <div>
+      <h2>这是组件cpn-b</h2>
+    </div>
   </template>
 
   <script src="https://unpkg.com/vue@next"></script>
@@ -35,6 +44,15 @@
     }
 
     const app = Vue.createApp(why)
+    // 使用app注册一个全局组件
+    // 全局组件：意味着注册的这个组件可以在任何的组件模板中使用
+    // 开发中不推荐
+    app.component("cpn-a", {
+      template: `<h2>我是cpn-a组件</h2>`
+    })
+    app.component("cpn-b", {
+      template: '#cpn-b'
+    })
     app.mount('#app')
     
   </script>

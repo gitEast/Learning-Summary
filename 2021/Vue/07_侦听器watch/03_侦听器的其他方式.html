@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-05-20 23:19:28
- * @LastEditTime: 2021-05-20 23:21:04
+ * @LastEditTime: 2021-05-23 10:03:58
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \Learning-Summary\2021\Vue\07_侦听器watch\03_侦听器的其他方式.html
@@ -29,17 +29,33 @@
       template: '#my-app',
       data() {
         return {
-          message: 'Hello World!'
+          message: 'Hello World!',
+          friends: [
+            { name: 'Wind' },
+            { name: 'Even' }
+          ]
         }
       },
       created() {
-        this.$watch('info', (newInfo, oldInfo) => {
+        const unwatch = this.$watch('info', (newInfo, oldInfo) => {
           console.log(newInfo, oldInfo);
         }, {
           deep: true,
           immediate: true
         })
       },
+      watch: {
+        info(newValue, oldValue) {
+          // 新旧值相同，因为使用同一个地址，指向同一个对象
+          console.log(newValue, oldValue);
+        },
+        "info.name": function (newName, oldName) {
+          console.log(newName, oldName);
+        },
+        "friends[0].name": function (newName, oldName) {
+          console.log(newName, oldName);
+        }
+      }
     }
 
     const app = Vue.createApp(why)

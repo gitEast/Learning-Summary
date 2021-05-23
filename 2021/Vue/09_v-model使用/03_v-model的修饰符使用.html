@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-05-21 21:24:49
- * @LastEditTime: 2021-05-21 21:37:38
+ * @LastEditTime: 2021-05-23 10:56:06
  * @LastEditors: Please set LastEditors
  * @Description: lazy
  * @FilePath: \Learning-Summary\2021\Vue\09_v-model使用\03_v-model的修饰符使用.html
@@ -26,6 +26,7 @@
       <!-- number -->
       <input type="text" v-model.number="score">
       <h2>{{score}}</h2>
+      <button @click="showType">查看类型</button>
 
       <!-- trim -->
       <input type="text" v-model.trim="trimMsg">
@@ -43,7 +44,12 @@
           score: 0,
           trimMsg: ''
         }
-      }
+      },
+      methods: {
+        showType() {
+          console.log(this.score, typeof this.score);
+        }
+      },
     }
 
     const app = Vue.createApp(why)

@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-05-10 20:09:09
- * @LastEditTime: 2021-05-21 21:50:52
+ * @LastEditTime: 2021-05-23 19:00:23
  * @LastEditors: Please set LastEditors
  * @Description: coderwhy的Vue+TypeScript
  * @FilePath: \Learning-Summary\2021\Vue\vue3.md
@@ -409,24 +409,85 @@
 + 数组
 
 ### 侦听器watch的其他方式(二)
-+ 侦听对象的属性`info.name(newName, oldName) {}`
++ 侦听对象的属性：`'info.name'(newName, oldName) {}`
++ 侦听数组中的对象的属性
+  - 不可行：`'friends[0].name'(newName, oldName) {}`
+  - 可行但不常用：`deep: true`
+  - 常用
+    * 创建组件BaseFriend，v-for遍历：`<base-friend :friend="friend"></base-friend>`
+    * 使用props获取传入的值：`props: { friend: Object }`
+    * 监听friend中的name值：即侦听对象的属性
+
+### 知识补充
+1. 对象的引用赋值：`const info = { name: 'Easy', friends: { name: 'Wind' } }`
+2. 对象的浅拷贝：`const obj01 = Object.assign({}, info)`
+   1. info.name不同
+   2. info.friends一样
+3. 对象的深拷贝
+   1. JSON：`const obj02 = JSON.parse(JSON.stringify(info))`
+   2. loadsh工具库
+      1. 浅拷贝：`const obj03 = _.clone(info)`
+      2. 深拷贝：`const obj04 = _.cloneDeep(info)`
 
 
-## 2021-05-21 表单提交和开发模式
+## 2021-05-21 表单提交和开发模式(注册组件)
+### 莫名其妙的笔记
++ 本课：v-model
++ 本课：注册组件
++ 日后：webpack/vite
+
 ### v-model的基本功能
-+ form提交
++ form提交——与用户交互的重要手段
   - v-model在input、textarea和select元素上创建双向数据绑定
 + 双向绑定
   - 1.v-bind value的绑定；2.监听input事件，更新message的值：`<input type="text" :value="message" @input="inputChange">`
-  - 本质是上面一行代码的语法糖：`<input type="text" v-model:value="message">`
+  - 本质是上面一行代码的语法糖：`<input type="text" v-model:value="message">`，负责监听用户的输入来更新数据
 
 ### v-model的修饰符
 + lazy：将input事件绑定改为绑定change事件，按下enter键才改变
 + number
-+ trim
++ trim：前后空格会被自动去除
 
 ### Vue的组件化
+1. 将一个**完整的页面**分成**很多个组件**
+2. **每个组件**都用于实现**页面的一个功能块**
+3. 而每一个组件都可以进行**细分**
+4. 而**组件本身**又可以在**多个地方进行复用**
 + 组件化是Vue的核心思想
   - createApp函数传入了一个对象app，这个对象本质上就是一个组件，也是我们应用程序的根组件
-  - 组件化提供了一种抽象，让我们可以开发出一个个独立可复用的小组件来构造我们的应用
-  - 任何应用都会被抽象成一棵组件树
+  - 组件化提供了一种抽象，让我们可以开发出一个个**独立可复用**的小组件来构造我们的应用
+  - 任何应用都会被抽象成一棵**组件树**
+
+### 注册组件并使用
++ 组件命名
+  - 分隔符
+  - 驼峰
++ 注册组件方式
+  - 全局组件
+    * 没有用到这个组件，也会被打包
+  - 局部组件
+    * 通过components属性选项进行注册
+
+### 开发模式
+1. 目前我们都是在html文件中，通过template编写自己的模板、脚本逻辑、样式等
+2. 但是随着项目越来越复杂，我们会采用组件化的方式来进行开发
+   1. which means 每个组件都会有自己的模板、脚本逻辑、样式等
+   2. 抽离单独的js和css文件固然可行，但它们还是会分离开来(？？？什么意思？)
+   3. js代码在一个全局的作用域下，容易出现命名冲突
+   4. 为了适配一些浏览器，必须使用ES5语法
+   5. 代码编写完成之后，仍然需要通过工具对代码进行构建、部署
+
+### 单文件的特点
++ 代码的高亮
++ ES6、CommonJS的模块化能力
++ 组件作用域的CSS
++ 可以使用预处理器来构建更丰富的组件，比如TypeScript、Babel、Less、Sass等
+1. 如何支持SFC
+   1. 方式一：使用Vue CLI来创建新项目
+   2. 方式二：使用webpack or rollup or vite这类打包工具，对项目进行打包处理
+2. 最终做项目或在公司开发，都是使用Vue CLI
+
+### webpack的使用前提
+1. [官方文档](https://webpack.js.org)
+2. webpack的运行依赖Node环境
+3. 可使用nvm管理node版本
