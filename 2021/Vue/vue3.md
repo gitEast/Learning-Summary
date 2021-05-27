@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-05-10 20:09:09
- * @LastEditTime: 2021-05-23 19:00:23
+ * @LastEditTime: 2021-05-27 20:15:30
  * @LastEditors: Please set LastEditors
  * @Description: coderwhy的Vue+TypeScript
  * @FilePath: \Learning-Summary\2021\Vue\vue3.md
@@ -491,3 +491,32 @@
 1. [官方文档](https://webpack.js.org)
 2. webpack的运行依赖Node环境
 3. 可使用nvm管理node版本
+
+## Vue组件化开发(二)
+### Webpack基础打包
++ 认识webpack——前端构建工具
+  - 模块化
+  - 高级的特性来加快开发效率或安全性
+  - 实时监听文件的变化 → 反映到浏览器上
+  - 将代码进行压缩、合并以及其他相关的优化
++ 但大多前端不需要考虑这些
+  - 通常使用三大框架来开发
+  - 三大框架的创建过程都是借助于脚手架(CLI)完成的
+  - 实际上，Vue-CLI、create-react-app、Angular-CLI都是基于webpack的
++ Webpack到底是什么呢？
+  - 官方解释：webpack is a static module bundler for modern JavaScript applications.
+  - 打包bundler
+  - 静态的static → 将代码打包成最终的静态资源(部署到静态服务器)
+  - 模块化module：ES Module、CommonJS、AMD等
+  - 现代的modern
++ Vue项目加载文件有哪些呢？
+  - JavaScript：ES6 → ES5，TypeScript → JavaScript
+  - CSS：CSS文件模块的加载、提取，Less、Sass等预处理器的处理
+  - 图片img文件的加载，字体font文件的加载
+  - HTML资源的打包
+  - 处理vue项目的SFC文件.vue文件
++ Webpack的安装
+  - webpack的安装目前分为两个
+    * webpack
+    * webpack-cli：命令行操作webpack
+  - 安装命令：`npm install webpack webpack-cli -g`
