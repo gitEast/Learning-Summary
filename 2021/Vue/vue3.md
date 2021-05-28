@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-05-10 20:09:09
- * @LastEditTime: 2021-05-27 20:15:30
+ * @LastEditTime: 2021-05-28 22:05:27
  * @LastEditors: Please set LastEditors
  * @Description: coderwhy的Vue+TypeScript
  * @FilePath: \Learning-Summary\2021\Vue\vue3.md
@@ -515,8 +515,39 @@
   - 图片img文件的加载，字体font文件的加载
   - HTML资源的打包
   - 处理vue项目的SFC文件.vue文件
-+ Webpack的安装
++ Webpack的全局安装
   - webpack的安装目前分为两个
     * webpack
     * webpack-cli：命令行操作webpack
   - 安装命令：`npm install webpack webpack-cli -g`
+  - 使用：`webpack`
++ webpack的局部安装
+  - 初始化项目：`npm init`
+  - 安装命令：`npm install webpack webpack-cli -D`
++ Webpack的依赖图
+  - 如何对项目进行打包：
+    * 根据命令或配置文件找到入口文件
+    * 从入口开始，生成一个依赖关系图，包含程序中所需要的所有模块(不在图结构中，则不被打包)
+    * 然后遍历图结构，打包一个个模块
++ css-loader的使用
+  — 打包.css文件，出现问题：![.CSS文件打包出现的问题](./img/css-loader_error.png)
+  - 以上错误告诉我们，需要一个loader来加载css文件
+    * loader可以对模块的源代码进行转换
+    * 将css文件也看成是一个模块，我们通过import来加载这个模块
+    * 加载这个模块时，webpack并不知道如何进行，需要定制对应的loader来完成这个功能
+  - 需要一个什么样的loader？
+    * 可以读取css文件的loader
+    * 常用的是css-loader：`npm install css-loader -D`
+  - 使用loader的方式
+    * 内联样式：`import 'css-loader!../css/style.css'
+    * CLI方式(webpack5不支持)
+    * 配置方式
+  - 使用css-loader后，css样式仍没有生效
+    * 原因：css-loader只是负责解析.css文件，并不会把解析后的css样式插入到页面中
+    * 解决：需要style-loader
+    * 注意：loader配置有顺序，从下往上
++ less文件的使用
+  - 安装less：`npm install less -D`，自带less compiler
+  - 需要在项目中安装less-loader：`npm install less-loader -D`
+  - 配置loader时注意顺序
++ PostCSS工具
