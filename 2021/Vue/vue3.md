@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-05-10 20:09:09
- * @LastEditTime: 2021-05-28 22:05:27
+ * @LastEditTime: 2021-06-03 21:21:11
  * @LastEditors: Please set LastEditors
  * @Description: coderwhy的Vue+TypeScript
  * @FilePath: \Learning-Summary\2021\Vue\vue3.md
@@ -551,3 +551,213 @@
   - 需要在项目中安装less-loader：`npm install less-loader -D`
   - 配置loader时注意顺序
 + PostCSS工具
+
+## Webpack5搭建Vue环境(Webpack打包其他资源) 2021-05-30
+### 加载图片
+1. 使用图片的方式
+   1. `background-image: url('路径')`
+   2. `<img src='路径'>`
+2. file-loader(webpack5不推荐)
+   1. 安装：`npm install file-loader -D`
+   2. 修改webpack配置
+      ```javascript
+        {
+          test: /\.(jpe?g|png|gif|svg)$/,
+          use: 'file-loader'
+        }
+      ```
+   3. 配置输出项
+      ```javascript
+        {
+          test: /\.(jpe?g|png|gif|svg)$/,
+          use: {
+            loader: 'file-loader',
+            options: {
+              outputPath: 'img',
+              name: '[name]_[hash:6].[ext]' //文件的命名
+            }
+          }
+        }
+      ```
+3. url-loader
+   1. 工作方式与file-loader相似，但可以将较小的文件，转成base64的URI
+   2. 安装url-loader：`npm install url-loader -D`
+   3. webpack配置
+      ```javascript
+        {
+          test: /\.(jpe?g|png|gif|svg)$/,
+          use: {
+            loader: 'url-loader',
+            options: {
+              outputPath: 'img',
+              name: '[name]_[hash:6].[ext]', //文件的命名
+              limit: 100 * 1024 // 100kb
+            }
+          }
+        }
+      ```
+4. asset module type(webpack5加载资源方法)
+   1. webapck配置
+      ```javascript
+        {
+          test: /\.(jpe?g|png|gif|svg)$/,
+          //type: 'asset/resource', // 不管三七二十一，全部打包
+          type: 'asset',
+          generator: {
+            filename: 'img/[name]_[hash:6][ext]'
+          },
+          parser: {
+            dataUrlCondition: {
+              maxSize: 100 * 1024
+            }
+          }
+        }
+      ```
+
+### 加载字体
+1. file-loader
+   1. 安装
+   2. webpack配置
+      ```javascript
+        {
+          test: /\.(eot|ttf|woff2)$/,
+          use: {
+            loader: 'file-loader',
+            options: {
+              name: 'font/[name]_[hash:6].[ext]' //文件的命名
+            }
+          }
+        }
+      ```
+2. asset module type
+   1. webpack配置
+      ```javascript
+        {
+          test: /\.(eot|ttf|woff2)$/
+          type: 'asset/resource',
+          generator: {
+            filename: 'font/[name]_[hash:6][ext]'
+          }
+        }
+      ```
+
+### 插件
+1. 认识Plugin
+   1. 官方描述
+      > While loaders are used to transform certain types of modules, plugins can be leveraged to perform a wider range of tasks like bundle optimization, asset management and injection of environment variables.
+   2. 上面表达的含义翻译过来就是：
+      1. Loader是用于特定的模块类型转换
+      2. Plugin可以用于执行更广泛的任务，比如打包优化、资源管理、环境变量注入等
+2. CleanWebpackPlugin
+   1. 作用：在打包之前自动删除已有dist文件
+   2. 安装：`npm install clean-webpack-plugin -D`
+   3. webpack.config.js配置
+      ```javascript
+        const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+        module.exports = {
+          entry: '',
+          output: {},
+          module: {},
+          plugins: [
+            // 一个个的插件对象
+            new CleanWebpackPlugin()
+          ]
+        }
+      ```
+3. HtmlWebpackPlugin
+   1. 作用：在打包时自动生成HTML模板
+   2. 安装：`npm install html-webpack-plugin -D`
+   3. webapck.config.js配置
+      ```javascript
+        const HtmlWebpackPlugin = require('html-webapck-plugin')
+        module.exports = {
+          plugins: [
+            // 一个个的插件对象
+            new CleanWebpackPlugin(),
+            new HtmlWebpackPlugin()
+          ]
+        }
+      ```
+   4. 自定义模板
+      ```javascript
+        const { DefinedPlugin } = require('webpack')
+        module.exports = {
+          plugins: [
+            // 一个个的插件对象
+            new CleanWebpackPlugin(),
+            new HtmlWebpackPlugin({
+              template: `./public/index.html`,
+              title: '哈哈哈'
+            }),
+            new DefinedPlugin({
+              BASE_URL: "'./'"
+            })
+          ]
+        }
+      ```
+4. CopyWebpackPlugin
+   1. 作用：复制文件到打包文件夹中
+   2. 安装：`npm install copy-webpack-plugin -D`
+   3. webpack.config.js
+      ```javascript
+        module.exports = {
+          plugins: [
+            new CopyWebpackPlugin({
+              patterns: [
+                {
+                  from: 'public',
+                  to: 'build',
+                  globOptions: {
+                    ignore: [
+                      '**/index.html'
+                    ]
+                  }
+                }
+              ]
+            })
+          ]
+        }
+      ```
+
+### webpack的配置说明
+```javascript
+  module.exports = {
+    // 设置模式
+    // development 开发阶段，会设置development
+    // production 准备打包上线的时候，设置production
+    mode: 'development',
+    // 设置source-map，建立js映射文件，方便调试代码和错误
+    devtool: 'source-map'
+  }
+```
+
+<!-- -D表示开发时依赖 -->
+
+
+### 文件的命名规则
+1. 有时候我们处理后的文件名称按照一定的规则进行显示
+   1. 保留原来的文件名、扩展名
+   2. 同时为了防止重复，包含一个hash值等
+2. 这时我们可以使用PlaceHolders来完成，webpack给我们提供了大量的PlaceHolders来显示不同的内容
+   1. [网址](https://webpack.js.org/loaders/file-loader/#placeholders)
+   2. 可以在文档中查阅自己需要的palceholder
+3. 介绍几个最常用的placeholder
+   1. [ext]：处理文件的扩展名
+   2. [name]：处理文件的名称
+   3. [hash]：文件的内容，使用MD4的散列函数处理，生成一个128位的hash值(32个十六进制)
+   4. [contentHash]：在file-loader中和[hash]的结果是一致的(在webpack的一些其他地方不一样)
+   5. [hash:<length>]：截图hash的长度，默认32个字符太长了
+   6. [path]：文件相对于webpack配置文件的路径
+
+
+## Babel和devServer 2021-06-03
+### Babel
+1. 为什么需要Babel？
+   1. 使用ES6+的语法 or TypeScript or React，离不开babel
+   2. Babel是一个工具链，主要用于旧浏览器或环境中ES6+代码转化为向后兼容版本的JavaScript，包括语法转换、源代码转换等
+2. Babel命令行使用
+   1. 本身可以作为一个独立的工具使用
+   2. 安装库
+      1. @babel/core：Babel的核心代码，必须安装
+      2. @babel/cli：可以让我们在命令行使用Babel(在webpack中不需要安装)
+   3. 
