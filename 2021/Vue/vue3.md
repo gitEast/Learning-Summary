@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-05-10 20:09:09
- * @LastEditTime: 2021-06-03 21:21:11
+ * @LastEditTime: 2021-06-08 21:33:37
  * @LastEditors: Please set LastEditors
  * @Description: coderwhy的Vue+TypeScript
  * @FilePath: \Learning-Summary\2021\Vue\vue3.md
@@ -756,8 +756,34 @@
    1. 使用ES6+的语法 or TypeScript or React，离不开babel
    2. Babel是一个工具链，主要用于旧浏览器或环境中ES6+代码转化为向后兼容版本的JavaScript，包括语法转换、源代码转换等
 2. Babel命令行使用
-   1. 本身可以作为一个独立的工具使用
+   1. 本身可以作为一个独立的工具使用，不和webpack等构建工具配置来单独使用
    2. 安装库
       1. @babel/core：Babel的核心代码，必须安装
       2. @babel/cli：可以让我们在命令行使用Babel(在webpack中不需要安装)
-   3. 
+   3. 命令
+      1. 文件夹：`npx babel demo.js --out-dir dist`
+      2. 文件：`npx babel demo.js --out-file dist/demo.js`
+   4. 箭头函数的转换
+      1. 安装：`npm install @babel/plugin-transform-arrow-functions -D`
+      2. 使用：`npx babel demo.js --out-file dist/demo.js --plugins=@babel/plugin-transform-arrow-functions`
+   5. var与const+let
+      1. 安装：@babel/plugin-transform-block-scoping
+      2. 使用：`npx babel demo.js --out-file dist/demo.js --plugins=@babel/plugin-transform-arrow-functions,@babel/plugin-transform-block-scoping`
+3. 由于使用babel插件安装麻烦，所以提供babel的预设preset
+   1. 安装：`npm install @babel/preset-env -D`
+   2. 使用：`npx babel demo.js --out-file dist/demo.js --presets=@babel/preset-env`
+
+### Babel的底层原理
+1. 工作原理
+   1. 将Babel看成是一个编译器
+   2. Babel编译器的作用就是将我们的源代码，转换成浏览器可以直接识别的另外一段代码
+2. 工作流程
+   1. 解析阶段 Parsing
+   2. 转换阶段 Transformation
+   3. 生成阶段 Code Generation
+3. 具体流程
+   > 原生源代码 → 词法分析 → tokens数组 → 语法分析 → AST抽象语法树 → 遍历 → 访问→ 应用插件 → 新的AST → 目标源代码
+
+[**编译器源代码推荐**](https://github.com/jamiebuilds/the-super-tiny-compiler)
+
+目前听到08的34分钟
