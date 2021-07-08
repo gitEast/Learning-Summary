@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-05-10 20:09:09
- * @LastEditTime: 2021-06-08 21:33:37
+ * @LastEditTime: 2021-06-11 22:02:30
  * @LastEditors: Please set LastEditors
  * @Description: coderwhy的Vue+TypeScript
  * @FilePath: \Learning-Summary\2021\Vue\vue3.md
@@ -786,4 +786,115 @@
 
 [**编译器源代码推荐**](https://github.com/jamiebuilds/the-super-tiny-compiler)
 
-目前听到08的34分钟
+### Vue的打包
+1. `import { createApp } from 'vue'`：将vue看作一个模块，createApp为导出函数
+   1. `npm install vue`：此时安装的是vue2 ——2021-06-11
+   2. `npm install vue@next`：安装vue3
+2. Vue代码
+   ```javascript
+     const app = createApp({
+       template: `<h2>我是Vue渲染出来的</h2>`,
+       data() {
+         return {
+           title: 'hello world'
+         }
+       }
+     })
+     app.mount('#app')
+   ```
+3. 打包失败
+   1. Vue源代码对其进行解析
+      1. Vue版本一：runtime + compiler：compiler对tempalte进行编译
+      2. Vue版本二：runtime-only(默认)
+      3. vue.global.js：CDN引入版本和下载版本，会暴露一个全局的Vue来使用
+      4. vue.esm-browser.js：通过原生ES模块导入使用(在浏览器中通过`<script type='module'>来使用)
+      5. vue.esm-bundler.js：在使用构建工具时使用，如果需要解析template，则需要手动指定该版本
+      6. vue.cjs.js：服务器端渲染使用，通过require()在Node.js中使用
+4. 指定版本编译：`import { createApp } from 'vue/dist/vue.esm-bundler.js'`
+
+### 运行时+编译器 VS 仅运行时
+1. 在Vue开发过程中，有三种方式来编写DOM元素
+   1. template模板方式
+   2. render函数的方式，使用h函数来编写渲染的内容
+      1. 直接返回一个虚拟节点，也就是Vnode节点
+   3. 通过.vue文件中的template来编写模板
+      1. 通过vue-loader来对其进行编译和处理
+
+### VSCode对SFC文件的支持
+1. SFC文件：single-file components，单文件组件
+2. VSCode对SFC的支持插件
+   1. Vetur
+   2. Volar(官方推荐)
+
+### App.vue的编写
+1. App.vue文件
+   ```javascript
+     <template>
+       <h2>我是Vue渲染出来的</h2>
+       <h2>{{title}}</h2>
+     </tempalte>
+
+     <script>
+       export default {
+         data() {
+           return {
+             title: 'hello world'
+           }
+         }
+       }
+     </script>
+     
+     <style>
+       h2 {
+         color: red;
+       }
+     </style>
+  ```
+2. main.js
+   ```javascript
+     import { createApp } from 'vue/dist/vue.esm-bundler.js'
+     import App from './vue/App.vue'
+     const app = createApp(App)
+     app.mount('#app')
+   ```
+3. 打包报错
+   1. 安装依赖：`npm install vue-loader@next`
+   2. webpack.config.js
+      ```javascript
+        {
+          test: /\.vue$/,
+          loader: 'vue-loader'
+        }
+      ```
+4. 打包报错
+   1. 安装依赖：`npm install @vue/compiler-sfc -D`
+   2. webpack.config.js
+      ```javascript
+        const { VueLoaderPlugin } = require('vue-loader/dist/index')
+
+        new VueLoaderPlugin()
+      ```
+
+
+## devServer和VueCLI 2021-06-11
+1. 为什么要搭建本地服务器
+   1. 目前开发的代码，为了运行需要有两个操作
+      1， `npm run build`，编译相关代码
+      2. 通过live server或者直接通过浏览器，打开index.html代码，查看效果
+   2. 这个过程经常操作会影响我们的开发效率，我们希望可以做到当文件发生变化时，可以自动完成编译和展示
+   3. 为了完成自动编译，webpack提供了几种可选的方式
+      1. webpack watch mode
+      2. webpack-dev-server
+      3. webpack-dev-middleware
+2. Webapck watch
+   1. webpack给我们提供了watch模式
+   2. 如何使用
+      1. webpack.config.js中`watch: true`
+      2. package.json中`"build": "webpack --watch"`
+3. webapck-dev-server
+   1. webpack的watch方法可以监听到文件的变化，但事实上它本身没有自动刷新浏览器的功能
+   2. 目前我们可以在VSCode中使用live-server来完成这样的功能
+   3. 但我们希望在不适用live-server的情况下，可以具备liver reloading(实时重新加载)的功能
+   4. 安装：`npm install webpack-dev-server -D`
+   5. 修改配置文件，告知live server，从哪里启动：package.json文件中，添加脚本`"server": "webapck server"`
+   6. webpack-dev-server在编译之后不会写入到任何输出文件，而是使用了一个叫memfs的库，将bundle文件保留在内存中
