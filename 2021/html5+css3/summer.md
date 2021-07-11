@@ -1,7 +1,7 @@
 <!--
  * @Author: East Wind
  * @Date: 2021-07-04 20:28:49
- * @LastEditTime: 2021-07-04 21:05:25
+ * @LastEditTime: 2021-07-12 06:36:29
  * @LastEditors: Please set LastEditors
  * @Description: pink的零基础html5+css3
  * @FilePath: \Learning-Summary\2021\html5+css3\summer.md
@@ -44,6 +44,7 @@
    ```html
      <html>
        <head>
+         <meta>
          <title>Title</title>
        </head>
        <body>
@@ -51,6 +52,39 @@
        </body>
      </html>
    ```
+   1. `<!DOCTYPE>`标签
+      1. 文档类型声明标签，告诉浏览器使用的HTML版本
+      2. 位于文档最前面的位置
+      3. 不是HTML标签
+   2. lang语言
+      1. language，当前文档显示的语言
+      2. 英文：en； 中文：zh-CN
+      3. 影响浏览器的自带翻译功能
+      4. `<html lang="en">`
+   3. charset字符集
+      1. `<meta charset="UTF-8">`
+      2. 规定HTML文档使用的字符编码类型
+      3. GB2312：简体中文； BIG5：繁体中文； GBK：简体+繁体； UTF-8：万国码
+3. 常用标签
+   1. 标签语义：标签的含义or用途，使页面结构更清晰
+   2. 标题标签：`<h1> - <h6>`
+      1. 重要性递减
+      2. 独占一行（块级元素），文字加粗
+   3. 段落标签`<p>`
+      1. 文本在一个段落中会根据浏览器窗口的大小自动换行
+      2. 段落和段落之间保有空隙
+   4. 换行标签`<br />`
+      1. 单标签
+      2. 强制换行，段落内另起一行，没有其他的间距
+   5. 文本格式化标签
+      1. <strong>加粗</strong>：`<strong></strong>`或者`<b></b>`，推荐使用前者
+      2. <em>倾斜</em>：`<em></em>`或者`<i></i>`推荐使用前者
+      3. <ins>下划线</ins>：`<ins></ins>`或者`<u></u>`，推荐使用前者
+      4. <del>删除线</del>：`<del></del>`或者`<s></s>`，推荐使用前者
+   6. `<div>`和`<span>`标签
+      1. 没有语义，用于装内容的盒子
+      2. `<div>`：独占一行，块级元素
+      3. `<span>`：行内元素
 3. 超链接标签
    1. `<a href="#">`
 4. 写出图片标签，并说出alt和title的区别
