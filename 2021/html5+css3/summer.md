@@ -1,7 +1,7 @@
 <!--
  * @Author: East Wind
  * @Date: 2021-07-04 20:28:49
- * @LastEditTime: 2021-07-12 06:36:29
+ * @LastEditTime: 2021-07-12 21:54:12
  * @LastEditors: Please set LastEditors
  * @Description: pink的零基础html5+css3
  * @FilePath: \Learning-Summary\2021\html5+css3\summer.md
@@ -85,10 +85,31 @@
       1. 没有语义，用于装内容的盒子
       2. `<div>`：独占一行，块级元素
       3. `<span>`：行内元素
-3. 超链接标签
-   1. `<a href="#">`
-4. 写出图片标签，并说出alt和title的区别
-   1. `<img src="#">`
-   2. alt为图片无法加载时的说明文字
-   3. title为鼠标hover图片时显示的文字
-5. 相对路径的三种形式
+   7. 图像标签
+      1. `<img src="图像url" />` 单标签
+      2. src为该标签的必须属性，用于指定图像文件的路径和文件名
+      3. alt为图片无法加载时的说明文字
+      4. title为鼠标hover图片时显示的文字
+      5. width
+      6. height
+      7. border：设置图片边框，黑色，一般使用CSS解决
+   8. 超链接标签
+      1. `<a href="跳转目标" target="目标窗口的弹出方式">文本或图像</a>`
+      2. target: _self为默认值，_blank为在新标签页中打开
+      3. 链接分类：
+         1. 外部链接：以http开头
+         2. 内部链接：网站内部
+         3. 空链接：`<a href="#"></a>`
+         4. 下载链接：如果href里面地址是一个文件或者压缩包，则会下载这个文件
+         5. 网页元素链接：`<a href="链接地址"><img src="某张图片" /></a>
+         6. 锚点链接：`<a href="#id"></a>`
+   9. 注释标签：`<!-- 注释 -->`
+   10. 特殊字符
+      1. 空格：`&nbsp;`
+4. <strong>路径</strong>
+   1. 目录文件夹
+   2. 根目录
+   3. 路径区别
+      1. 相对路径
+      2. 绝对路径
+
