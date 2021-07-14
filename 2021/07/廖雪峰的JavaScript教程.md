@@ -1,3 +1,5 @@
+[网站](https://www.liaoxuefeng.com/wiki/1022910821149312)
+
 ## 对象
 ```javascript
 var xiaoming = {
@@ -44,10 +46,11 @@ for (let i in arr) {
 ## Map -- ES6新增的数据类型
 **重点看哈，一直没接触过**
 1. js中默认对象的表达方式即`{}`，键值对结构
-2. Map也是`{}`键值对，但键必须是字符串
+2. Map也是`{}`键值对，但键可以是其他类型，不一定是字符串
 3. Map具有极快的查找速度（例子有点扯）
+4. 
 ```javascript
-const m = new Map()
+const m = new Map([['test', 'test']])
 m.set('git', 'gitHub')
 m.set('py', 'python')
 m.set('js', 'JavaScript')
@@ -72,4 +75,46 @@ s.delete('git')
 console.log(s2) // ['py', 'js', 25]
 ```
 
-## 3
+## iterable
+**这个也不会啊！！！**
+1. `for...in`遍历对象的属性
+2. `for...of`遍历对象本身的元素
+3. 引入iterable后使用的forEach简直完美！（详情请见test.js文件的12-16行）
+4. forEach只能在Array里用，对象不行的，Map可以哈
+
+## 函数
+### 关键字`arguments`
+1. arguments类似于Array，但不是Array，不能使用forEach
+2. arguments只在函数内部起作用，并且永远指向调用函数时传入的所有参数
+3. 可以通过arguments的长度判断传入多少个参数
+4. 详情：test.js 27-43行
+
+### 关键字`rest`
+1. arguments会取到所有的参数，而rest只会取到剩余的参数，类型为Array
+2. 使用格式`function fn(x, y, ...rest)`
+3. 详情：test.js 45-55行
+
+## this
+<!-- 好耶！到this了 -->
+1. 复杂的this，但是这里的不复杂，不看了，以后看coderwhy的好了
+### apply
+1. 指定函数的this指向对象，函数自带方法
+2. 用法：`fn.apply(object, [])`，前者为this指向对象，后者格式Array为传入参数
+3. 详情：test.js 57-72行
+
+### call
+1. 与apply作用相同
+2. 用法：`fn.apply(object, 1, 2, 3)`，参数按顺序传入
+
+## 高阶函数
+1. 定义：能够接收另一个函数作为参数的函数，叫做高阶函数
+### map()
+1. 定义在Array中，并返回一个新的数组
+2. 用法：`arr.map(fn)`
+3. 详情：test.js 74-86行
+
+### reduce()
+1. 定义在Array中，并返回一个结果
+2. 用法：`arr.reduce(fn(x, y) {...})`，前者为计算结果，后者为序列的下一个元素
+3. 详情：test.js 88-96行
+
