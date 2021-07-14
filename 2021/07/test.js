@@ -86,9 +86,11 @@ console.log(res02);
 */
 
 /** reduce() */
+/*
 let arr = [1, 3, 5, 7, 9]
 let res = arr.reduce((x, y) => {
   console.log(x);
   return x + y
 })
-console.log('结果是' + res);
+console.log('结果是' + res)
+*/
