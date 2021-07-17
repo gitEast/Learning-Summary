@@ -1,7 +1,7 @@
 <!--
  * @Author: East Wind
  * @Date: 2021-07-04 20:28:49
- * @LastEditTime: 2021-07-12 21:54:12
+ * @LastEditTime: 2021-07-17 23:13:59
  * @LastEditors: Please set LastEditors
  * @Description: pink的零基础html5+css3
  * @FilePath: \Learning-Summary\2021\html5+css3\summer.md
@@ -16,7 +16,7 @@
 3. H5C3 提高： 10%
 4. 项目-品优购电商网站： 20%
 
-## LESSON01 HTML5简介
+## HTML5简介
 1. 网页的基本组成
    > 网站：多个网页的集合。网页：图片+文字+声音+视频等元素
 2. 什么是HTML
@@ -34,7 +34,7 @@
       2. 表现：CSS，外观样式
       3. 行为：JavaScript，交互效果
 
-## HTML标签
+## HTML标签 上
 1. 标签的书写注意规范
    1. 尖括号包围关键词
    2. 双标签：成对出现
@@ -112,4 +112,164 @@
    3. 路径区别
       1. 相对路径
       2. 绝对路径
+
+## HTML标签 下
+### 表格标签
+1. 表格的主要作用：显示、展示数据，把繁杂的数据表现得很有条理
+2. 基本语法
+   ```javascript
+     <table>
+       <tr>
+         <td>单元格内的文字</td>
+         ...
+       </tr>
+       ...
+     </table>
+   ```
+3. 表头单元格标签 `<th>`
+   1. 加粗
+   2. 居中
+4. 表格属性：实际开发时不常用，一般通过CSS来设置
+   1. align：left、center、right，文字对齐方式
+   2. border："1"或""，1像素或无
+   3. cellpadding：规定单元边沿与其内容之间的空白
+   4. cellspacing：单元格之间的空白距离
+   5. width：表格宽度
+   6. height：表格高度
+5. 表格结构标签
+   1. 表头：`<thead>`
+   2. 主体：`<tbody>`
+6. 合并单元格
+   1. 跨行合并：rowspan
+   2. 跨列合并：colspan
+   3. 合并单元格三部曲
+      1. 确定 跨行 or 跨列
+      2. 在目标单元格写上合并方式
+      3. 删除多余的单元格
+
+### 列表标签
+1. 作用：用于布局，整齐、整洁、有序
+2. 列表类型
+   1. 无序列表（重点）
+      1. 语法：
+         ```javascript
+           <ul>
+             <li></li>
+             <li></li>
+             <li></li>
+           </ul>
+         ```
+      2. 无序列表有自己的样式，但实际上会使用CSS修改
+   2. 有序列表：`ol>li*n`
+   3. 自定义列表
+      1. 语法：
+         ```javascript
+           <dl>
+             <dt>名词1</dt>
+             <dd>名词1解释1</dd>
+             <dd>名词1解释2</dd>
+           </dl>
+         ```
+      2. 作用：常用于描述各个项目
+
+### 表单标签
+1. 为什么需要表单：收集用户信息
+2. 表单组成
+   1. 表单域
+   2. 表单控件（表单元素）
+   3. 提示信息
+3. 表单域
+   1. 定义：包含表单元素的区域
+   2. `<form>`：会把它范围内的表单元素信息提交给服务器
+   3. 语法：
+      ```html
+      <form action="url地址" method="提交方式" name="表单域名称">
+         各种表单元素
+      </form>
+      ```
+4. 表单元素
+   1. `<input>`，各种type
+      1. text：文本框
+      2. password： 密码
+      3. radio：name -> 单选按钮
+      4. checkbox：复选框
+      5. submit：提交按钮
+      6. reset：重置按钮
+      7. 其他属性：name，value，maxLength，checked
+   2. `<label>`
+      1. 使用for绑定一个`<input>`的id
+   3. `<select>`
+      1. 子标签：`<option></option>`，至少一对
+      2. `selected="selected"`默认选中
+   4. `<textarea>`
+      1. 用于多行文本
+      2. 语法
+         ```html
+           <textarea rows="3" cols="5">
+              文本内容
+           </textarea>
+         ```
+      3. 实际开发不用rows和cols属性
+
+### 查阅文档
++ MDN网站
+
+
+## CSS 层叠样式表
+### 简介
+1. 作用：美化场景
+2. HTML的局限性：只关注内容的语义
+3. CSS的价值：结构与样式相分离
+
+### 语法规范
+1. 组成部分
+   1. 选择器
+   2. 一条或多条声明，键值对形式，以分号分割不同声明
+
+### 代码风格
+1. 样式格式风格
+   1. 紧凑格式
+   2. 展开格式 √
+2. 样式大小写：小写
+3. 空格规范：冒号与属性值之间有一个空格，选择器与花括号之间也有一个空格
+
+### 选择器
+1. 作用
+   1. 选择标签
+   2. 为修改样式做准备
+2. 分类
+   1. 基础选择器：单个选择器
+      1. 标签选择器
+      2. 类选择器：`.类名 {}`
+      3. id选择器：`#id {}`
+      4. 通配符选择器：`* {}`
+   2. 复合选择器
+3. CSS字体属性
+   1. `font-family`：字体，用逗号隔开，使用顺序 →
+   2. `font-size`
+      1. 单位：px
+      2. 标题标签比较特殊，需要另外设定大小
+   3. `font-weight`：加粗
+   4. `font-style`：italic，normal
+   5. 字体的复合属性：`font: font-style font-weight font-size/line-height font-family;`
+4. CSS文本属性
+   1. `color`：改变字体颜色
+   2. `text-align`：水平对齐方式
+   3. `text-decoration`：装饰文本，none | underline | overline | line-through
+   4. `text-indent`：首行缩进，2em
+   5. `line-height`：行间距 = 上间距 + 文本高度 + 下间距，改变的是上下间距
+5. CSS的引入方式
+   1. 行内样式表
+   2. 内部样式表：`<style>`标签中
+   3. 外部样式表
+
+### Emmet语法
+1. 前身：Zen coding
+2. 作用：提高html/css的编写速度
+3. 快速生成语法
+   1. HTML
+   2. CSS
+4. 快速格式化代码：右键 → `Format Document`
+
+### CSS的复合选择器
 
