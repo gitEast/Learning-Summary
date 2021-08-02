@@ -118,3 +118,36 @@ console.log(s2) // ['py', 'js', 25]
 2. 用法：`arr.reduce(fn(x, y) {...})`，前者为计算结果，后者为序列的下一个元素
 3. 详情：test.js 88-96行
 
+### filter()
+去重
+```javascript
+  let arr = ['apple', 'apple', 'banana', 'pear', 'banana']
+  let r = arr.filter((fruit, index, self) => {
+    return self.indexOf(fruit) === index
+  })
+```
+
+### 排序 sort()
+1. `arr.sort()`：按照ASCII码排序
+2. 自定义排序
+   ```javascript
+     let nums = [10, 20, 1, 2, 3]
+     // 从小到大排序
+     nums.sort((x, y) => x-y)
+     // 从大到小排序
+   ```
+
+### every()
+每一个都满足才是true，有一个不满足就是false
+
+### find()
+返回符合条件的第一个元素，否则返回undefined
+
+### findIndex()
+返回符合条件的第一个元素的索引，否则返回-1
+
+### forEach()
+用于遍历数组
+
+## 闭包
+

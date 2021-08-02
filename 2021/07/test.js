@@ -94,3 +94,11 @@ let res = arr.reduce((x, y) => {
 })
 console.log('结果是' + res)
 */
+
+/** sort自定义排序 */
+
+let nums = [10, 20, 1, 2, 3]
+nums.sort((x, y) => x-y)
+console.log(nums)
+nums.sort((x, y) => y - x)
+console.log(nums)
