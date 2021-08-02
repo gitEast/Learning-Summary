@@ -75,4 +75,4 @@
   ![结果图](./img/hello_react.png)
 + React 创建虚拟 DOM 方法
   - jsx
-  - 纯 JavaScript
+  - 纯 JavaScript：`const VDOM = React.createElement('h1', { id: 'title' }, 'Hello, React')`
