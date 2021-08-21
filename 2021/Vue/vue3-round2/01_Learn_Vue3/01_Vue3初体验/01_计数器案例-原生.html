@@ -1,0 +1,47 @@
+<!--
+ * @Author: East Wind
+ * @Date: 2021-08-21 16:33:15
+ * @LastEditTime: 2021-08-21 16:42:46
+ * @LastEditors: Please set LastEditors
+ * @Description: 用原生 js 写 计数器案例
+ * @FilePath: \01_Learn_Vue3\01_Vue3初体验\01_计数器案例-原生.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>计数器案例 - 原生 JavaScript</title>
+  </head>
+  <body>
+    <div>
+      <h2 id="counter">0</h2>
+      <button id="incBtn">+1</button>
+      <button id="decBtn">-1</button>
+    </div>
+
+    <script>
+      // 获取元素
+      const counterEl = document.querySelector("#counter");
+      const incBtnEl = document.querySelector("#incBtn");
+      const decBtnEl = document.querySelector("#decBtn");
+
+      // 声明 h2 中数字的变量
+      let count = 0;
+      counterEl.innerHTML = count;
+
+      // 点击按钮事件
+      incBtnEl.addEventListener("click", () => {
+        console.log("点击了 +1 按钮");
+        count++;
+        counterEl.innerHTML = count;
+      });
+      decBtnEl.addEventListener("click", () => {
+        console.log("点击了 -1 按钮");
+        count--;
+        counterEl.innerHTML = count;
+      });
+    </script>
+  </body>
+</html>

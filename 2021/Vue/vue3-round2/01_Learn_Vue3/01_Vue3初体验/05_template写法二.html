@@ -1,0 +1,36 @@
+<!--
+ * @Author: East Wind
+ * @Date: 2021-08-21 17:20:03
+ * @LastEditTime: 2021-08-21 17:20:55
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \01_Learn_Vue3\01_Vue3初体验\05_template写法二.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>template - template</title>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <template id="hello">
+      <div>{{ msg }}</div>
+    </template>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+      Vue.createApp({
+        template: "#hello",
+        data() {
+          return {
+            msg: "hello template",
+          };
+        },
+      }).mount("#app");
+    </script>
+  </body>
+</html>

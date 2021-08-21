@@ -1,0 +1,35 @@
+<!--
+ * @Author: East Wind
+ * @Date: 2021-08-21 17:17:00
+ * @LastEditTime: 2021-08-21 17:19:38
+ * @LastEditors: Please set LastEditors
+ * @Description: template 写法 —— x-template
+ * @FilePath: \01_Learn_Vue3\01_Vue3初体验\04_template写法一.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>template - x-template</title>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script id="hello" type="x-template">
+      <div>{{ msg }}</div>
+    </script>
+    <script>
+      Vue.createApp({
+        template: "#hello",
+        data() {
+          return {
+            msg: "hello template",
+          };
+        },
+      }).mount("#app");
+    </script>
+  </body>
+</html>

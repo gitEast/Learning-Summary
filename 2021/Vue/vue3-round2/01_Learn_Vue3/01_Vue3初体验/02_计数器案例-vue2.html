@@ -1,0 +1,47 @@
+<!--
+ * @Author: East Wind
+ * @Date: 2021-08-21 16:40:50
+ * @LastEditTime: 2021-08-21 16:49:33
+ * @LastEditors: Please set LastEditors
+ * @Description: 使用 vue2 写法 完成 计数器案例
+ * @FilePath: \01_Learn_Vue3\01_Vue3初体验\02_计数器案例-vue2.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>计数器案例 - Vue2</title>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+      const app = Vue.createApp({
+        template: `
+          <div>
+            <h2>{{counter}}</h2>
+            <button @click='increment'>+1</button>
+            <button @click='decrement'>-1</button>
+          </div>
+        `,
+        data() {
+          return {
+            counter: 0,
+          };
+        },
+        methods: {
+          increment() {
+            this.counter++;
+          },
+          decrement() {
+            this.counter--;
+          },
+        },
+      });
+      app.mount("#app");
+    </script>
+  </body>
+</html>
