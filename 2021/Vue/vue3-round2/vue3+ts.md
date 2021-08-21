@@ -1,7 +1,7 @@
 <!--
  * @Author: East Wind
  * @Date: 2021-08-21 15:55:58
- * @LastEditTime: 2021-08-21 17:41:17
+ * @LastEditTime: 2021-08-21 22:22:54
  * @LastEditors: Please set LastEditors
  * @Description: vue3 + ts 学习 第二遍 —— 此次要求吃透
  * @FilePath: \vue3-round2\vue3+ts.md
@@ -255,4 +255,38 @@
 ### 课后问题
 
 1. 为什么 methods 中不能使用箭头函数？
+   1. 箭头函数的 this 是上层作用域中的 this，即 window
+   2. 当 this 是 window 时，methods 中无法获取 data 返回对象中的数据
+   3. this 绑定规则：[https://mp.weixin.qq.com/s/hYm0JgBI25grNG_2sCRlTA](https://mp.weixin.qq.com/s/hYm0JgBI25grNG_2sCRlTA)
 2. 不使用箭头函数的情况下，this 到底指向的是什么？
+   1. 指向 实例的 proxy![publicThis](./imgs/publicThis.png)
+
+## 02 Vue3 模板语法常见的指令
+
+### VSCode 代码片段编写
+
+1. Preference -> User Snippets -> html.json
+2. 要快捷命令编写的 文本
+3. snippet generator 网站生成 json 格式
+4. 粘贴进 html.json 文件
+
+### Vue 模板语法
+
+- 基于 HTML
+- 声明式绑定 DOM 和底层组件实例的数据
+
+1. Mustache 语法
+2. v-once
+3. v-text
+4. v-html
+5. v-pre：不解析 mustache 语法
+6. v-cloak
+7. v-bind 绑定属性
+   1. 属性名不固定：`<div :[key]="{value}"></div>`
+   2. 自定义属性：`<div v-bind="{info}"></div>` info 是对象
+8. v-on 交互
+   1. 一次性绑定多个事件：`<div v-on="{click: handleClick, mousemove: handleMousemove}"></div>`
+   2. 参数传递：`<div @click="handleClick($event, param)"></div>`
+   3. 修饰符
+      1. .stop
+      2. ... 感觉没必要了，基本用不到
