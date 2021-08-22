@@ -1,0 +1,66 @@
+<!--
+ * @Author: East Wind
+ * @Date: 2021-08-22 18:19:15
+ * @LastEditTime: 2021-08-22 18:56:22
+ * @LastEditors: Please set LastEditors
+ * @Description: 购物车案例 - html
+ * @FilePath: \vue3-round2\01_Learn_Vue3\08_购物车综合案例\index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <template id="my-app">
+      <template v-if="books.length >= 1">
+        <table>
+          <thead>
+            <th></th>
+            <th>书籍名称</th>
+            <th>出版日期</th>
+            <th>价格</th>
+            <th>购买数量</th>
+            <th>操作</th>
+          </thead>
+          <tbody>
+            <template v-for="(item, index) in filterBooks">
+              <tr>
+                <td>{{ index + 1 }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.date }}</td>
+                <td>{{ item.price }}</td>
+                <td>
+                  <button
+                    :disabled="item.count <= 1"
+                    @click="handleDecrement(index)"
+                  >
+                    -
+                  </button>
+                  {{ item.count }}
+                  <button @click="handleIncrement(index)">+</button>
+                </td>
+                <td><button @click="handleDelete(index)">移除</button></td>
+              </tr>
+            </template>
+          </tbody>
+        </table>
+        <h2>总价：{{ getTotalPrice() }}</h2>
+      </template>
+      <template v-else>
+        <div>
+          <h2>购物车空了</h2>
+        </div>
+      </template>
+    </template>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="./index.js"></script>
+  </body>
+</html>

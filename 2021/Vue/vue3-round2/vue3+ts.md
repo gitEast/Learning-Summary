@@ -1,7 +1,7 @@
 <!--
  * @Author: East Wind
  * @Date: 2021-08-21 15:55:58
- * @LastEditTime: 2021-08-22 12:54:06
+ * @LastEditTime: 2021-08-22 19:01:20
  * @LastEditors: Please set LastEditors
  * @Description: vue3 + ts 学习 第二遍 —— 此次要求吃透
  * @FilePath: \vue3-round2\vue3+ts.md
@@ -335,3 +335,252 @@
     - 如果中间存在不知道如何排序的位置序列，则使用 key 建立索引图，最大限度地使用旧节点![patchKeyedChildren5](./imgs/patchKeyedChildren5.png)
 - 没有 key
   - 执行 patchUnkeyedChildren 方法![patchUnkeyedChildren](./imgs/patchUnkeyedChildren.png)
+
+## 04 Vue3 的 Options API
+
+### 复杂 data 的处理方式
+
+- 插值语法
+  - 简单的运算
+  - 否则模板过重，难以维护
+- methods
+  - 所有 data 使用过程都会变成一个方法的调用
+- computed
+  - 所有 getter 和 setter 的 this 上下文自动绑定为组件实例
+
+### computed 的用法
+
+- `computed: { [key: string]: Function | { get: Function, set: Function } }`
+  - Function:
+    ```javascript
+    computed: {
+      myMsg() {
+        return '我的' + this.msg
+      }
+    }
+    ```
+  - { get: Function, set: Function }
+    ```javascript
+    computed: {
+      myMsg: {
+        get() {
+          return '我的' + this.msg
+        },
+        set(value) {
+          console.log(value)
+        }
+      }
+    }
+    ```
+
+### computed 源码
+
+- computed 中的某一项 是否为函数
+  - Y：对该函数绑定 publicThis，并传入 publicThis
+  - N：该项的 get 是否为函数
+    - Y：对该项的 get 函数绑定 publicThis，并传入 publicThis
+    - N：设置该项的 get 为 () => {}
+      ![computed-get](./imgs/computed-get.png)
+
+### 认识侦听器
+
+- 类型：`watch: { [key: string]: string | Function | Object | Array }`
+  - 离谱的写法不管了...
+  - `[key: string]: Function`
+    ```javascript
+    watch: {
+      info(newInfo, oldInfo) {
+        console.log('新的', newInfo, '旧的', oldInfo)
+      }
+    }
+    ```
+  - `[key: string]: Object`
+    ```javascript
+    watch: {
+       info: {
+         handler(newInfo, oldInfo) {
+           console.log('新的', newInfo, '旧的', oldInfo)
+         },
+         deep: true, // 深度侦听
+         immediate: true // 立即执行
+       }
+     }
+    ```
+- created 中写法
+  ```javascript
+  created() {
+    this.$watch(
+      'info',
+      (newInfo, oldInfo) => {
+        console.log('新的', newInfo, '旧的', oldInfo)
+      },
+      {
+        deep: true,
+        immediate: true
+      }
+    )
+  }
+  ```
+
+### 购物车案例
+
+- index.html
+
+  ```html
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Document</title>
+      <link rel="stylesheet" href="./index.css" />
+    </head>
+    <body>
+      <div id="app"></div>
+
+      <template id="my-app">
+        <template v-if="books.length >= 1">
+          <table>
+            <thead>
+              <th></th>
+              <th>书籍名称</th>
+              <th>出版日期</th>
+              <th>价格</th>
+              <th>购买数量</th>
+              <th>操作</th>
+            </thead>
+            <tbody>
+              <template v-for="(item, index) in filterBooks">
+                <tr>
+                  <td>{{ index + 1 }}</td>
+                  <td>{{ item.name }}</td>
+                  <td>{{ item.date }}</td>
+                  <td>{{ item.price }}</td>
+                  <td>
+                    <button
+                      :disabled="item.count <= 1"
+                      @click="handleDecrement(index)"
+                    >
+                      -
+                    </button>
+                    {{ item.count }}
+                    <button @click="handleIncrement(index)">+</button>
+                  </td>
+                  <td><button @click="handleDelete(index)">移除</button></td>
+                </tr>
+              </template>
+            </tbody>
+          </table>
+          <h2>总价：{{ getTotalPrice() }}</h2>
+        </template>
+        <template v-else>
+          <div>
+            <h2>购物车空了</h2>
+          </div>
+        </template>
+      </template>
+
+      <script src="https://unpkg.com/vue@next"></script>
+      <script src="./index.js"></script>
+    </body>
+  </html>
+  ```
+
+- index.js
+
+  ```javascript
+  const why = {
+    template: "#my-app",
+    data() {
+      return {
+        books: [
+          {
+            id: 1,
+            name: "算法导论",
+            date: "2006-09",
+            price: 85,
+            count: 1,
+          },
+          {
+            id: 2,
+            name: "UNIX编程艺术",
+            date: "2006-02",
+            price: 59,
+            count: 1,
+          },
+          {
+            id: 3,
+            name: "编程珠玑",
+            date: "2008-10",
+            price: 39,
+            count: 1,
+          },
+          {
+            id: 4,
+            name: "代码大全",
+            date: "2006-03",
+            price: 128,
+            count: 1,
+          },
+        ],
+        totalPrice: 0,
+      };
+    },
+    methods: {
+      handleIncrement(index) {
+        this.books[index].count++;
+      },
+      handleDecrement(index) {
+        this.books[index].count--;
+      },
+      handleDelete(index) {
+        this.books.splice(index, 1);
+      },
+      getTotalPrice() {
+        let sum = 0;
+        for (const item of this.books) {
+          sum += item.price * item.count;
+        }
+        return "￥" + sum;
+      },
+    },
+    computed: {
+      filterBooks() {
+        return this.books.map((item) => {
+          const newItem = Object.assign({}, item); // Object.assign 只拷贝一层
+          newItem.price = "￥" + newItem.price;
+          return newItem;
+        });
+      },
+    },
+  };
+
+  const app = Vue.createApp(why);
+  app.mount("#app");
+  ```
+
+- index.css
+
+  ```css
+  table {
+    width: 500px;
+    text-align: center;
+    border-collapse: collapse;
+  }
+
+  table,
+  th,
+  td {
+    border: 1px solid #ccc;
+  }
+
+  thead {
+    background-color: #eee;
+  }
+
+  th,
+  td {
+    padding: 5px;
+  }
+  ```
