@@ -1,7 +1,7 @@
 <!--
  * @Author: East Wind
  * @Date: 2021-08-21 15:55:58
- * @LastEditTime: 2021-08-21 22:22:54
+ * @LastEditTime: 2021-08-22 12:54:06
  * @LastEditors: Please set LastEditors
  * @Description: vue3 + ts 学习 第二遍 —— 此次要求吃透
  * @FilePath: \vue3-round2\vue3+ts.md
@@ -290,3 +290,48 @@
    3. 修饰符
       1. .stop
       2. ... 感觉没必要了，基本用不到
+
+## 03 Vue 基础-模板语法（二）
+
+### 条件渲染
+
+1. v-if v-else v-else-if
+   1. 惰性
+      1. 只有在条件为 true 时，才会渲染标签
+      2. 当条件为 false 时，其判断的内容完全**不会被渲染**或**会被销毁掉**
+   2. 配合 template 使用
+      1. 不可见的包裹元素
+      2. 最终不存在。（若使用 div，则性能会被浪费）
+2. v-show
+   1. 其 DOM 会被渲染，但 `display: none;`
+   2. 不支持 template
+
+### 列表渲染
+
+- v-for
+  - 数组形式：`v-for="(item, index) in arr"`
+  - 对象形式：`v-for="(value, key, index) in obj"`
+  - 数字形式：`v-for="(num, index) in 10"`
+  - 使用 template 对多个元素进行包裹
+
+### v-for 中的 key
+
+#### 认识 VNode
+
+1. Virtual Node，虚拟节点
+2. VNode 的本质是一个 JavaScript 对象
+3. VNode Tree
+   1. 组件 or 元素 --> VNode![VNode](./imgs/VNode.png)
+   2. 一大堆的元素 --> 多个 VNode --> VNode Tree --> 真实 DOM![VNode Tree](./imgs/VNode_Tree.png)
+
+#### diff 算法
+
+- 有 key
+  - 执行 patchKeyedChildren 方法
+    - 从头部开始遍历，遇到相同节点继续，不同则跳出循环![patchKeyedChildren1](./imgs/patchKeyedChildren1.png)
+    - 从尾部开始遍历，相同继续，不同跳出循环![patchKeyedChildren2](./imgs/patchKeyedChildren2.png)
+    - 如果最后新节点更多，则添加新节点![patchKeyedChildren3](./imgs/patchKeyedChildren3.png)
+    - 如果旧节点更多，则移除旧节点![patchKeyedChildren4](./imgs/patchKeyedChildren4.png)
+    - 如果中间存在不知道如何排序的位置序列，则使用 key 建立索引图，最大限度地使用旧节点![patchKeyedChildren5](./imgs/patchKeyedChildren5.png)
+- 没有 key
+  - 执行 patchUnkeyedChildren 方法![patchUnkeyedChildren](./imgs/patchUnkeyedChildren.png)

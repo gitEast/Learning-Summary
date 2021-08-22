@@ -1,0 +1,47 @@
+<!--
+ * @Author: East Wind
+ * @Date: 2021-08-22 11:33:49
+ * @LastEditTime: 2021-08-22 11:39:09
+ * @LastEditors: Please set LastEditors
+ * @Description: v-for 中 key ，当 标签和 key 都不变 但数组发生改变时，页面显示是否会出错
+ * @FilePath: \vue3-round2\01_Learn_Vue3\05_列表渲染\插入元素时index测试.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <template id="my-app">
+      <ul>
+        <li v-for="(item, index) in movies">{{index + 1}} ---- {{item}}</li>
+      </ul>
+      <button @click="handleClick">test</button>
+    </template>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+      const why = {
+        template: "#my-app",
+        data() {
+          return {
+            movies: ["沉睡魔咒", "青蛇", "自梳", "冰雪奇缘"],
+          };
+        },
+        methods: {
+          handleClick() {
+            this.movies.splice(1, 0, "使女的故事");
+          },
+        },
+      };
+
+      const app = Vue.createApp(why);
+      app.mount("#app");
+    </script>
+  </body>
+</html>
