@@ -1,7 +1,7 @@
 <!--
  * @Author: East Wind
  * @Date: 2021-08-21 15:55:58
- * @LastEditTime: 2021-08-22 19:01:20
+ * @LastEditTime: 2021-08-23 23:27:47
  * @LastEditors: Please set LastEditors
  * @Description: vue3 + ts 学习 第二遍 —— 此次要求吃透
  * @FilePath: \vue3-round2\vue3+ts.md
@@ -584,3 +584,58 @@
     padding: 5px;
   }
   ```
+
+## 05 v-model 和注册 Vue 组件
+
+### 前情提要
+
+1. vue3 API：watch 的不同写法
+2. 侦听数组、对象的某一项的引用，新旧值会相同，因为是引用地址
+3. 一般对于深层次的侦听，选择在子组件中侦听
+
+### 对象的引用 —— 浅拷贝 —— 深拷贝
+
+1. 对象的引用![图解](./imgs/对象的引用.png)
+2. 对象的浅拷贝![图解](./imgs/对象的浅拷贝.png)
+3. 对象的深拷贝 —— 等 js 高级课程
+   ```javascript
+   const info = {
+     name: "east",
+     age: 22,
+     friends: [
+       {
+         name: "wind",
+         age: 22,
+       },
+     ],
+   };
+   // JSON 方法
+   const info_copy01 = JSON.parse(JSON.stringify(info));
+   // lodash 方法
+   // 引入lodash
+   const info_copy02 = _.cloneDeep(info);
+   ```
+
+### v-model
+
+- v-model = (v-bind 绑定 value) + (v-on 绑定 input 事件)
+- 绑定表单元素
+- 修饰符
+  - .lazy
+  - .number
+  - .trim: 去除首尾空格
+
+### 组件化开发
+
+- 组件化：整个页面 --> 拆分 --> 独立可复用的组件 --> 组件树 --> 整个页面
+- 注册组件
+  - 全局注册：`app.component(组件名，组件对象)`
+  - 局部注册：`App = { ..., components: { 组件名: 组件对象 } }`
+
+### Vue 的开发模式
+
+> SFC --> webpack/rollup/vite 打包
+
+- SFC 使用方式
+  - Vue CLI ---- 目前 webpack
+  - webpack/rollup/vite
