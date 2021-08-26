@@ -1,7 +1,7 @@
 <!--
  * @Author: East Wind
  * @Date: 2021-08-21 15:55:58
- * @LastEditTime: 2021-08-23 23:27:47
+ * @LastEditTime: 2021-08-27 00:24:41
  * @LastEditors: Please set LastEditors
  * @Description: vue3 + ts 学习 第二遍 —— 此次要求吃透
  * @FilePath: \vue3-round2\vue3+ts.md
@@ -639,3 +639,39 @@
 - SFC 使用方式
   - Vue CLI ---- 目前 webpack
   - webpack/rollup/vite
+
+## 06 webpack 基础打包和 css 打包
+
+### 认识 webpack
+
+1. 前端开发发展
+   1. 模块化
+   2. ES6+、TS、sass、less 等高级特性
+   3. 热更新：实时地监听文件的变化，并且反映到浏览器上
+   4. 将代码进行压缩、合并以及其他相关的优化
+2. Webpack is a static module bundler for modern JavaScript applications.
+
+### webapck 的使用
+
+- 依赖于 node 环境
+- 安装：npm install webpack webpack-cli -g (webpack-cli 用于命令行敲代码，脚手架中不用)
+- 局部 webpack (实际项目使用)
+  - `npm init`：创建 package.json 文件，用于管理项目的信息、库依赖等
+  - `npm install webpack webpack-cli -D`
+  - 在 root/src 下创建 index.js 文件，是 webpack 的入口文件
+  - `npx webpack`
+  - 在 package.json 中添加脚本：`"build": "webpack"`
+  - `npm run build`
+
+### Webpack 的配置文件
+
+- 若修改 webpack.config.js 的文件名，则修改 "build" 脚本为 `webpack --(配置文件名)`
+- 配置文件基本模板![inAndOut](./imgs/inAndOut.png)
+- 添加样式编译的 loader
+  - 需要用到的 loader：css-loader, style-loader, less-loader(less 中使用)
+    - `npm install css-loader style-loader less-loader -D`
+  - 配置文件![less](./imgs/less.png)
+- PostCSS
+  - 一个通过 JavaScript 来转换样式的工具
+  - 进行一些 CSS 的转换和适配，比如自动添加浏览器前缀、CSS 样式的重置
+  - 用到再说....不习惯
