@@ -1,7 +1,7 @@
 <!--
  * @Author: East Wind
  * @Date: 2021-08-21 15:55:58
- * @LastEditTime: 2021-08-27 00:24:41
+ * @LastEditTime: 2021-08-29 21:26:53
  * @LastEditors: Please set LastEditors
  * @Description: vue3 + ts 学习 第二遍 —— 此次要求吃透
  * @FilePath: \vue3-round2\vue3+ts.md
@@ -672,6 +672,246 @@
     - `npm install css-loader style-loader less-loader -D`
   - 配置文件![less](./imgs/less.png)
 - PostCSS
+
   - 一个通过 JavaScript 来转换样式的工具
   - 进行一些 CSS 的转换和适配，比如自动添加浏览器前缀、CSS 样式的重置
   - 用到再说....不习惯
+
+  ## 07 Webpack 打包其他资源和插件使用
+
+  ### 图片资源
+
+  - 使用方式
+    - `background: url('路径')`
+    - `<img src="路径">`
+  - 可使用的 loader
+    - file-loader
+    - url-loader
+
+### file-loader
+
+- 不管了，webpack5 不推荐使用
+- 而且使用`background-image: url("../imgs/zznh.png")`出现莫名其妙的问题
+
+### url-loader
+
+不管了，webpack5 不推荐使用
+
+## 08 Babel 解析和 Vue 文件打包
+
+### Babel 介绍
+
+1. 使用 ES6+ 的语法、TypeScript、React，都离不开 Babel
+2. Babel 是一个工具链，主要用于旧浏览器或者环境中将 ES6+ 代码转换为向后兼容版本的 JavaScript
+3. 包括语法转换、源代码转换等
+
+### Babel 命令行使用
+
+- Babel 可以作为一个单独的工具使用
+- 需要安装
+  - @babel/core: babel 核心代码， 必须安装
+  - @babel/cli: 支持命令行使用 babel 的工具
+- 使用流程
+  - `npm install @babel/core @babel/cli -D`
+  - 编写 ES6+ 的代码![箭头函数代码](./imgs/babel_01.png)
+  - `npx babel src --out-dir dist`，获取打印后的文件 dist/index.js ![babel转换后的图片](./imgs/babel_02.png)
+    - `--out-dir dist`: 输出到 dist 文件夹
+    - `--out-file dist/main.js`: 输出到 dist 文件夹的 main.js 中
+  - Babel 转换后的文件与为转换前一样，因为没有插件
+  - 转换需要对应的插件
+    - @babel/plugin-transform-arrow-functions -- 箭头函数
+      - `npm install @babel/plugin-transform-arrow-functions -D`
+      - `npx babel src --out-file dist/arrow.js --plugins=@babel/plugin-transform-arrow-functions`![箭头函数转换](./imgs/babel_arrow.png)
+    - @babel/plugin-transform-block-scoping
+      - `npm install @babel/plugin-transform-block-scoping -D`
+      - `npx babel src --out-file dist/arrowBlock.js --plugins=@babel/plugin-transform-arrow-functions,@babel/plugin-transform-block-scoping`![箭头函数与const转换](./imgs/babal_arrow_block.png)
+  - 这样太麻烦了，使用 Babel 的预设 preset -- @babel/preset-env
+    - `npm install @babel/preset-env -D`
+    - `npx babel src --out-file dist/preset.js --presets=@babel/preset-env`![使用预设](./imgs/babel_preset.png)
+
+### Babel 的底层原理
+
+1. Babel 的工作
+   1. 一种源代码(原生语言) --> 另一种源代码(目标语言)
+   2. 可以将 Babel 看成是一个编译器
+   3. Babel 编译器的作用就是将源代码，转换成浏览器可以直接识别的另外一段源代码
+2. Babel 也拥有编译器的工作流程
+   1. 解析阶段 -- parsing
+   2. 转换阶段 -- transformation
+   3. 生成阶段 -- code generation
+   4. 用 js 写的编译器 https://github.com/jamiebuilds/the-super-tiny-compiler
+3. Babel 编译器执行原理
+   1. 执行阶段![图片](./imgs/babel_abstract.png)
+   2. 具体工作![图片](./imgs/babel_complete.png)
+
+### babel-loader
+
+- 在实际开发中，我们会在构建工具中通过配置 Babel 来对其进行使用，如在 webpack 中
+- 安装
+  - @babel/core
+  - `npm install babel-loader -D`
+- 配置
+  - 普通配置![普通配置](./imgs/babel_webpack_01.png)
+  - 抽离配置
+    - webpack.config.js![配置](./imgs/babel_webpack_02.png)
+    - babel.config.js![配置](./imgs/babel_webpack_03.png)
+
+### Vue 源码打包
+
+1. `npm install vue@next`
+2. 下次再学，累了...
+
+## 09 devServer resolve 环境分离
+
+### 本地服务器简介
+
+1. 为什么需要搭建本地服务器？
+   1. 之前需要 `npm run build` 和 live server 两个一起使用
+   2. 搭建本地服务器后，可以实现自动编译
+2. 本地服务器搭建类型
+   1. webpack watch mode
+   2. webpack-dev-server (常用)
+   3. webpack-dev-middleware
+
+### webpack watch
+
+- webpack 提供 watch 模式
+- 开启 watch 方式
+  - 在 package.json 中添加脚本 `"watch": "webpack --watch"`
+  - 在启动 webpack 命令式，添加 --watch 的标识
+- watch 模式的缺点
+  - 只能监听到文件的变化，不能够自动刷新浏览器
+
+### webpack-dev-server
+
+- 优点
+  - 在不使用 live-server 的情况下，可以具备 live reloading (实时重新加载)的功能
+  - 在编译后不写入任何输出文件，而是将打包后的文件保留在内存中
+- 使用 webpack-dev-server
+  - `npm install webpack-dev-server -D`
+  - 配置文件
+    ```javascript
+    module.exports = {
+      ...,
+      target: "web"
+      devServer: {
+        contentBase: "./build"
+      }
+    }
+    ```
+    ```json
+    srcipt: {
+      "serve": "webpack serve"
+    }
+    ```
+
+### 模块热替换 Hot Module Replacement HMR
+
+- 作用：在应用程序运行过程中，替换、添加、删除模块，而不需要重新刷新整个页面
+- 优势
+  - 不重新加载整个页面，可以保留某些应用程序的状态不丢失
+  - 只更新需要变化的内容，节省开发的时间
+  - 修改了 css、js 源代码，会立即在浏览器更新，相当于直接在浏览器的 devtools 中直接修改样式
+- 使用 HMR
+  - 修改 webpack.config.js 的配置
+    ```javascript
+    devServer: {
+      hot: true;
+    }
+    ```
+  - 指定进行热替换的模块
+    ```javascript
+    import "./hmr.js";
+    if (module.hot) {
+      module.hot.accept("./hmr.js", () => {
+        console.log("这个模块更新了");
+      });
+    }
+    ```
+
+### 框架的 HMR
+
+- vue-loader
+- React Hot Loader (已弃用) --> react-refresh
+
+### HMR 的原理
+
+- webpack-dev-server 会创建两个服务
+  - 提供静态资源的服务 express
+  - Socket 服务 net.Socket -- 长连接
+    - 当服务器监听到对应的模块发生变化时，会生成两个文件 .json(manifest 文件)和 .js(update chunk)
+    - 通过长连接，可以直接将这两个文件主动发送给客户端(浏览器)
+    - 浏览器拿到这两个新的文件后，通过 HMR runtime 机制，加载这两个文件，并且针对修改的模块进行更新
+- 原理图![HMR原理图](./imgs/HMR.png)
+
+### host 配置
+
+- host 设置主机位置
+  - 默认值 localhost
+    - === 域名
+    - === 127.0.0.1
+  - 0.0.0.0 -- 其他主机也可访问
+    - 监听 0.0.0.0 时，在同一个网段下的主机，可以通过 ip 地址访问
+
+* 127.0.0.1 -- 回环地址
+  - 正常的数据包：应用层 -> 传输层 -> 网络层 -> 数据链路层 -> 物理层
+  - 回环地址：在网络层直接被获取到了，不会经过数据链路层和物理层
+
+### port、open、compress
+
+1. port -- 设置监听的端口，默认 8080
+2. open -- 设置是否打开浏览器，默认 false
+3. compress -- 是否为静态文件开启 gzip compression，默认为 false
+
+### Proxy
+
+- 可用于解决跨域问题
+- webpack.config.js 配置
+
+  ```javascript
+  devServer: {
+    proxy: {
+      '/api': {
+        target: 'url',
+        pathRewrite: {
+          '^/api': ''
+        },
+        secure: false,
+        changeOrigin: true
+      },
+
+    }
+  }
+  ```
+
+### resolve 模块解析
+
+- webpack 能解析三种文件路径
+  - 绝对路径
+  - 相对路径
+  - 模块路径
+    - `resolve.modules = ['node_modules']` 默认设定
+- extensions 和 alias 配置
+  ```javascript
+  resolve: {
+    // extensions
+    extensions: ['.js', '.json', '.vue', '.ts'],
+    // alias
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+      'js': path.resolve(__dirname, './src/js')
+    }
+  }
+  ```
+
+### 如何区分开发环境
+
+- src
+  - config
+    - webpack.comm.config.js
+    - webpack.dev.config.js
+    - webpack.prod.config.js
+- 修改 package.json 脚本
+  - `"build": "webapck --config ./config/webpack.comm.config.js --env production"`
+  - `"serve": "webpack serve --config ./config/webpack.dev.config.js"`
+- **具体等我再写，现在懒得搞**
